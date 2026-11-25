@@ -1,0 +1,13 @@
+{
+  "model": "gbdt_P_crop",
+  "original": {
+    "tag": "t4",
+    "dev_ap": 0.7825234730162972
+  },
+  "refit": {
+    "dev_ap": 0.7841797382776199,
+    "n_iter": 3000,
+    "minutes": 18.0
+  },
+  "chosen": "refit"
+}

@@ -1,0 +1,17 @@
+{
+  "model": "model5",
+  "seed0_tag": "t4_model3",
+  "seed0_dev_ap": 0.833902108101914,
+  "seeds": {
+    "s1": {
+      "dev_ap": 0.8334480160743997,
+      "best_epoch": 15,
+      "minutes": 7.7
+    },
+    "s2": {
+      "dev_ap": 0.835411765302771,
+      "best_epoch": 15,
+      "minutes": 7.7
+    }
+  }
+}

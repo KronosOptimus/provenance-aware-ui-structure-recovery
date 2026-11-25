@@ -1,0 +1,18 @@
+# Candidate-pool ceiling (best possible picking) for the candidate-container nesting head. Clean dev only.
+# Pool and go/no-go rule fixed here BEFORE the run.
+# Run: python scripts/structure_candidate_pool_ceiling.py --config configs/structure_candidate_pool_ceiling.yaml
+data_dir: data/processed
+split: dev
+contain_tol: 0.002        # XY-cut baseline tolerance, same as the nesting baselines
+pool:                     # generated candidates, leaf boxes only
+  singletons: true        # {leaf}: makes single-child wrappers reachable
+  all_leaves: true
+  xy_tols: [0.0, 0.002, 0.01, 0.03]   # each with y-first and x-first cuts
+  agglo_methods: [single, average, complete]   # box-gap distance
+min_iou: 0.5              # oracle keeps a candidate only if its Hungarian match has IoU >= 0.5
+gate:
+  pool: P_all             # pixels-only pool the rule applies to
+  margin: 0.15            # GO if ceiling container F1 (raw truth) >= XY-cut + margin
+workers: 6                # laptop has ~3 GB free RAM; 15 workers ran out of memory at start-up
+n_boot: 1000
+seed: 0

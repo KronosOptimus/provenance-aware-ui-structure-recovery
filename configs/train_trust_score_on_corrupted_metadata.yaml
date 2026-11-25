@@ -1,0 +1,122 @@
+# Provenance network: wrong metadata, trust head, calibration.
+#   python scripts/train_trust_score_on_corrupted_metadata.py --config configs/train_trust_score_on_corrupted_metadata.yaml --stage <stage> [--split ...] [--laptop] [--smoke]
+# Laptop stages: rates, fingerprint (train only). Colab stages: build, embed, train, dev, test.
+# Every setting below was fixed before any result of these networks.
+
+# ---- paths (Colab); `laptop` block overrides them with --laptop
+data_dir: /content/work/structure/processed       # same tables tar as Models 4-6 (+ baseline file)
+img_dir: /content/work/screens
+cache_dir: /content/work/fusion/cache
+emb_dir: /content/work/fusion/emb
+out_dir: /content/drive/MyDrive/uistruct/trust_score
+runs_root: /content/drive/MyDrive/uistruct/runs
+structure_dir: /content/drive/MyDrive/uistruct/structure       # Model 4's selected trial (settings), its choices
+model3_ckpt: /content/drive/MyDrive/uistruct/checkpoints/model3_lr2.pt
+model3_lr_backbone: 3.0e-4
+backbone: model3            # backbone chosen for Model 4 on validation
+workers: null
+loader_workers: 3
+# laptop build of the full validation cache (results/runs/trust_score_build_dev_run1; the Colab tables give the same value):
+dev_fingerprint: 5f45b43d3a0df20a6540797da0e2a4fbb157de8547e788aa9c0798141ba1070c
+baselines_sha256: 8158bb9583c37c644575e9c21115025fec324036a5e8f7061bf89fcdca303338   # data/upload/trust_score_baselines.npz
+seed: 0
+n_boot: 1000
+
+laptop:
+  data_dir: data/processed
+  img_dir: data/raw/rico/combined
+  cache_dir: data/processed/trust_score
+  out_dir: data/processed/trust_score/out
+  runs_root: results/runs
+  workers: 6                # laptop RAM
+
+smoke:                      # laptop code check on a few screens; not results
+  limit: 120
+  untrained_trunk: true
+  hp_override: {max_epochs: 2, patience: 1}
+  loader_workers: 0
+  n_boot: 30
+  element_types_cnn_ckpt_dir: data/processed/trust_score_smoke/no_ckpts
+  baselines: {names: [model2, gbdt2, box_colour, model3, boxcnn], out: data/processed/trust_score_smoke/trust_score_baselines.npz,
+              file: data/upload/trust_score_baselines.npz, element_types_colour_dev: results/runs/element_types_colour_dev_run1/dev_probs.npz,
+              element_types_colour_test: results/runs/element_types_colour_test_run1/test_probs.npz, element_types_cnn_test: data/upload/element_types_cnn_test_probs.npz,
+              element_types_colour_keys: {model2: model2_s0, gbdt2: gbdt2, box_colour: box_colour_s0},
+              element_types_cnn_keys: {model3: model3_s0, boxcnn: boxcnn_s0},
+              element_types_cnn_dev_files: {model3: model3_lr2_dev_prob.npy, boxcnn: boxcnn_s0_dev_prob.npy}}
+  variants:
+    fusion_full:     {trust: true,  weights: {real: 0.5, heavy: 0.3, absent: 0.2},          seeds: [0, 1]}
+    fusion_nohead:   {trust: false, weights: {real: 0.5, heavy: 0.3, absent: 0.2},          seeds: [0]}
+    fusion_realonly: {trust: true,  weights: {real: 1.0},                                   seeds: [0]}
+    fusion_noinject: {trust: true,  weights: {real: 0.5, heavy_noinject: 0.3, absent: 0.2}, seeds: [0]}
+  out_dir: data/processed/trust_score_smoke/out
+  cache_dir: data/processed/trust_score_smoke/cache
+  emb_dir: data/processed/trust_score_smoke/emb
+  runs_root: data/processed/trust_score_smoke/runs
+  rates_run: data/processed/trust_score_smoke/runs/trust_score_rates_smoke_run1/metrics.json
+
+# ---- candidates: identical to Models 4-6 (pool fixed by the candidate-pool check)
+pool:
+  singletons: true
+  all_leaves: true
+  xy_tols: [0.0, 0.002, 0.01, 0.03]
+  agglo_methods: [single, average, complete]
+min_iou: 0.5
+
+# ---- corruption (plan §2). p_inj is read from the rates run (train only), not set by hand
+rates_run: results/runs/trust_score_rates_run1/metrics.json
+levels_train: [real, heavy, heavy_noinject, absent]    # heavy_noinject: only for fusion_noinject
+levels_eval: [real, heavy, inject2, drop50, absent]
+corruption_seed: 10                 # train levels; dev / test stress levels use 11 / 12
+
+# ---- fingerprint check (plan §2): fakes vs real invalid nodes, train only
+fingerprint:
+  n_screens: 3000
+  pass_auroc: 0.60
+
+# ---- model: Model 4's selected settings (read from its tune run, in the repo) + trust head
+model4_tune_metrics: results/runs/structure_tune_model4_run1/metrics.json
+model4_trial: t2_model3
+trust_weight: 1.0
+variants:                   # level draw weights per training screen and epoch (plan §2)
+  fusion_full:     {trust: true,  weights: {real: 0.5, heavy: 0.3, absent: 0.2},          seeds: [0, 1, 2]}
+  fusion_nohead:   {trust: false, weights: {real: 0.5, heavy: 0.3, absent: 0.2},          seeds: [0]}
+  fusion_realonly: {trust: true,  weights: {real: 1.0},                                   seeds: [0]}
+  fusion_noinject: {trust: true,  weights: {real: 0.5, heavy_noinject: 0.3, absent: 0.2}, seeds: [0]}   # fingerprint failed
+
+# ---- assembly thresholds (plan §4), validation real level only
+thresholds: [0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95]
+calibration_bins: 15
+
+# ---- earlier models' p(invalid) as removal / trust baselines (plan §5)
+baseline_model: fusion_full_s0          # candidate scores their removal is paired with
+element_types_cnn_ckpt_dir: /content/drive/MyDrive/uistruct/checkpoints
+baselines:
+  names: [model2, gbdt2, box_colour, model3, boxcnn]
+  out: data/upload/trust_score_baselines.npz                      # laptop stage `baselines` writes it
+  file: /content/drive/MyDrive/uistruct/trust_score_baselines.npz   # read on Colab
+  element_types_colour_dev: results/runs/element_types_colour_dev_run1/dev_probs.npz
+  element_types_colour_test: results/runs/element_types_colour_test_run1/test_probs.npz
+  element_types_cnn_test: data/upload/element_types_cnn_test_probs.npz
+  element_types_colour_keys: {model2: model2_s0, gbdt2: gbdt2, box_colour: box_colour_s0}
+  element_types_cnn_keys: {model3: model3_s0, boxcnn: boxcnn_s0}
+  element_types_cnn_dev_files: {model3: model3_lr2_dev_prob.npy, boxcnn: boxcnn_s0_dev_prob.npy}   # Model 3 row order
+
+pairs:                     # paired bootstrap on screens (container F1), every level and truth
+  - [fusion_full_s0+trust, fusion_full_s0]              # removing distrusted elements vs keeping all
+  - [fusion_full_s0+trust, fusion_full_s0+typehead]     # trust head vs the same network's type head
+  - [fusion_full_s0+trust, fusion_full_s0+gbdt2]        # vs the strongest earlier invalid detector (Model 2's trees)
+  - [fusion_full_s0+trust, fusion_full_s0+model2]
+  - [fusion_full_s0+trust, fusion_full_s0+box_colour]
+  - [fusion_full_s0+trust, fusion_full_s0+model3]
+  - [fusion_full_s0+oracle, fusion_full_s0+trust]       # distance to perfect removal
+  - [fusion_full_s0, fusion_nohead_s0]                  # trust head in the loop, nothing removed
+  - [fusion_full_s0+trust, fusion_realonly_s0+trust]    # corruption mix vs real metadata only
+  - [fusion_full_s0+trust, fusion_noinject_s0+trust]    # with vs without injected fakes
+trust_pairs:               # paired AUROC (unfaithful = positive), screens resampled
+  - [fusion_full_s0:trust, gbdt2]
+  - [fusion_full_s0:trust, model2]
+  - [fusion_full_s0:trust, box_colour]
+  - [fusion_full_s0:trust, model3]
+  - [fusion_full_s0:trust, fusion_full_s0:typehead]
+  - [fusion_full_s0:trust, fusion_noinject_s0:trust]
+  - [fusion_full_s0:trust, fusion_realonly_s0:trust]

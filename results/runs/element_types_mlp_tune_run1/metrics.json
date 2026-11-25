@@ -1,0 +1,38 @@
+{
+  "best_mlp": {
+    "trial": "mlp_trial_17",
+    "batch": 4096,
+    "max_epochs": 30,
+    "patience": 4,
+    "use_name": true,
+    "hidden": 256,
+    "layers": 3,
+    "dropout": 0.1,
+    "lr": 0.0009484557382638914,
+    "weight_decay": 0.0001,
+    "class_weight": "none",
+    "emb_dim": 32,
+    "use_pieces": true,
+    "best_epoch": 18,
+    "epoch": 18,
+    "train_loss": 0.6926993928282285,
+    "macro_f1_types": 0.7148268918549475,
+    "invalid_f1": 0.17844117249763608,
+    "sec": 20.9
+  },
+  "best_gbdt": {
+    "trial": "gbdt_trial_05",
+    "learning_rate": 0.05,
+    "max_leaf_nodes": 127,
+    "l2": 1.0,
+    "min_samples_leaf": 100,
+    "class_weight": null,
+    "max_iter": 500,
+    "n_iter": 500,
+    "macro_f1_types": 0.6805318705359793,
+    "invalid_f1": 0.23023284771510397
+  },
+  "anchor_mlp_dev_macro": 0.7024144763068563,
+  "n_mlp_trials": 20,
+  "n_gbdt_trials": 8
+}

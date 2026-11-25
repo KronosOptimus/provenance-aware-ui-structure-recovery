@@ -1,0 +1,7 @@
+# All non-learned nesting baselines (pixels-only and raw-metadata conditions), one table. Clean dev only.
+# Run: python scripts/structure_rule_baselines.py --config configs/structure_rule_baselines.yaml
+data_dir: data/processed
+split: dev
+contain_tol: 0.002          # same as structure_rule_baselines_true_elements.yaml
+n_boot: 1000
+seed: 0

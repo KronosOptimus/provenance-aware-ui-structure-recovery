@@ -1,0 +1,31 @@
+# Model 2 type head = Model 1 + colour features. Run: python scripts/train_element_types_with_colour.py --config configs/train_element_types_with_colour.yaml --stage tune|dev|test
+# Choices: hand-made colour stats; Model 1 settings AND a 20-trial re-tune; landscape/off-screen -> no_image flag;
+# extras: trees on Model 2 inputs (Model 1's best trees settings), invalid AUROC, colour-only (box + colour) row.
+data_dir: data/processed
+seed: 0
+min_count: 5
+workers: 4
+threads_per_worker: 4
+threads_main: 16
+n_boot: 1000
+element_types_mlp_tune_run: results/runs/element_types_mlp_tune_run1   # Model 1 settings (trial 0 here) and its trees settings
+element_types_mlp_dev_run: results/runs/element_types_mlp_dev_run1     # Model 1 / box / trees checkpoints, rescored for paired comparisons
+
+# ---- tune stage: same budget and space as Model 1 (20 MLP trials); trial 0 = Model 1's tuned settings
+n_mlp_trials: 20
+mlp_fixed: {batch: 4096, max_epochs: 30, patience: 4, use_name: true}
+mlp_space:
+  hidden: [128, 256, 512]
+  layers: [2, 3, 4]
+  dropout: [0.0, 0.1, 0.2, 0.3]
+  lr: {loguniform: [3.0e-4, 3.0e-3]}
+  weight_decay: [0.0, 1.0e-5, 1.0e-4]
+  class_weight: [none, inv_sqrt, inv]
+  emb_dim: [16, 32, 64]
+  use_pieces: [false, true]
+
+# ---- dev / test stages
+tune_run: results/runs/element_types_colour_tune_run1   # best = trial 0 (Model 1 settings); trial 17 drew the same settings
+gbdt_dev_max_iter: 2000      # as Model 1
+extra_seeds: [1, 2]
+dev_run: results/runs/element_types_colour_dev_run1

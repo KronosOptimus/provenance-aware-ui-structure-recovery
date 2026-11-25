@@ -1,0 +1,11 @@
+/data/
+__pycache__/
+.ipynb_checkpoints/
+*.egg-info/
+.venv/
+*.pt
+*.pkl
+*.parquet
+*.tar
+*.zip
+results/**/checkpoints/

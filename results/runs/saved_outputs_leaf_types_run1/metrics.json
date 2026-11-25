@@ -1,0 +1,601 @@
+{
+  "checks": {
+    "type_rows": 186501,
+    "tied_positions": 2063,
+    "leaves": 103910,
+    "leaf_screens": 8551,
+    "all_leaves_matched_with_equal_labels": true,
+    "leaves_sharing_an_identical_box_with_another_element": 269
+  },
+  "support": {
+    "IMAGE": 8073,
+    "PICTOGRAM": 27177,
+    "BUTTON": 10402,
+    "TEXT": 50170,
+    "LABEL": 1995,
+    "TEXT_INPUT": 1055,
+    "MAP": 33,
+    "CHECK_BOX": 829,
+    "SWITCH": 351,
+    "PAGER_INDICATOR": 981,
+    "SLIDER": 167,
+    "RADIO_BUTTON": 246,
+    "SPINNER": 175,
+    "PROGRESS_BAR": 158,
+    "ADVERTISEMENT": 28,
+    "DRAWER": 17,
+    "NAVIGATION_BAR": 14,
+    "TOOLBAR": 30,
+    "LIST_ITEM": 509,
+    "CARD_VIEW": 18,
+    "CONTAINER": 1451,
+    "DATE_PICKER": 1,
+    "NUMBER_STEPPER": 30
+  },
+  "small_types_excluded_in_sensitivity": [
+    "DATE_PICKER"
+  ],
+  "systems": {
+    "lookup": {
+      "macro_f1_types": {
+        "value": 0.448,
+        "lo": 0.4303,
+        "hi": 0.476,
+        "n": 8551
+      },
+      "macro_f1_types_support_ge_10": 0.4684,
+      "accuracy": 0.7794,
+      "predicted_invalid": 256,
+      "per_class_f1": {
+        "IMAGE": 0.1383,
+        "PICTOGRAM": 0.801,
+        "BUTTON": 0.5396,
+        "TEXT": 0.8923,
+        "LABEL": 0.8519,
+        "TEXT_INPUT": 0.0,
+        "MAP": 0.5957,
+        "CHECK_BOX": 0.7916,
+        "SWITCH": 0.5684,
+        "PAGER_INDICATOR": 0.2966,
+        "SLIDER": 0.0,
+        "RADIO_BUTTON": 0.951,
+        "SPINNER": 0.1443,
+        "PROGRESS_BAR": 0.9545,
+        "ADVERTISEMENT": 0.5641,
+        "DRAWER": 0.0,
+        "NAVIGATION_BAR": 0.186,
+        "TOOLBAR": 0.7119,
+        "LIST_ITEM": 0.1402,
+        "CARD_VIEW": 0.0,
+        "CONTAINER": 0.3055,
+        "DATE_PICKER": 0.0,
+        "NUMBER_STEPPER": 0.871
+      },
+      "macro_f1_types_all_elements": 0.5409
+    },
+    "gbdt_model1_inputs": {
+      "macro_f1_types": {
+        "value": 0.5952,
+        "lo": 0.5743,
+        "hi": 0.6333,
+        "n": 8551
+      },
+      "macro_f1_types_support_ge_10": 0.6222,
+      "accuracy": 0.8393,
+      "predicted_invalid": 1732,
+      "per_class_f1": {
+        "IMAGE": 0.6679,
+        "PICTOGRAM": 0.8691,
+        "BUTTON": 0.6836,
+        "TEXT": 0.9165,
+        "LABEL": 0.9034,
+        "TEXT_INPUT": 0.292,
+        "MAP": 0.4889,
+        "CHECK_BOX": 0.8718,
+        "SWITCH": 0.7877,
+        "PAGER_INDICATOR": 0.5646,
+        "SLIDER": 0.5923,
+        "RADIO_BUTTON": 0.9918,
+        "SPINNER": 0.23,
+        "PROGRESS_BAR": 0.8611,
+        "ADVERTISEMENT": 0.1212,
+        "DRAWER": 0.9091,
+        "NAVIGATION_BAR": 0.1026,
+        "TOOLBAR": 0.7059,
+        "LIST_ITEM": 0.4635,
+        "CARD_VIEW": 0.2632,
+        "CONTAINER": 0.566,
+        "DATE_PICKER": 0.0,
+        "NUMBER_STEPPER": 0.8364
+      },
+      "macro_f1_types_all_elements": 0.6742
+    },
+    "gbdt_model2_inputs": {
+      "macro_f1_types": {
+        "value": 0.633,
+        "lo": 0.6082,
+        "hi": 0.6724,
+        "n": 8551
+      },
+      "macro_f1_types_support_ge_10": 0.6618,
+      "accuracy": 0.8433,
+      "predicted_invalid": 2453,
+      "per_class_f1": {
+        "IMAGE": 0.7247,
+        "PICTOGRAM": 0.8797,
+        "BUTTON": 0.695,
+        "TEXT": 0.9153,
+        "LABEL": 0.8752,
+        "TEXT_INPUT": 0.2957,
+        "MAP": 0.6531,
+        "CHECK_BOX": 0.8799,
+        "SWITCH": 0.7859,
+        "PAGER_INDICATOR": 0.583,
+        "SLIDER": 0.5878,
+        "RADIO_BUTTON": 0.9856,
+        "SPINNER": 0.209,
+        "PROGRESS_BAR": 0.8205,
+        "ADVERTISEMENT": 0.6,
+        "DRAWER": 0.8485,
+        "NAVIGATION_BAR": 0.1622,
+        "TOOLBAR": 0.7273,
+        "LIST_ITEM": 0.4312,
+        "CARD_VIEW": 0.5294,
+        "CONTAINER": 0.5859,
+        "DATE_PICKER": 0.0,
+        "NUMBER_STEPPER": 0.7843
+      },
+      "macro_f1_types_all_elements": 0.715
+    },
+    "model1": {
+      "macro_f1_types": {
+        "value": 0.6621,
+        "lo": 0.6317,
+        "hi": 0.6881,
+        "n": 8551
+      },
+      "macro_f1_types_support_ge_10": 0.677,
+      "accuracy": 0.8451,
+      "predicted_invalid": 954,
+      "per_class_f1": {
+        "IMAGE": 0.6772,
+        "PICTOGRAM": 0.8701,
+        "BUTTON": 0.6849,
+        "TEXT": 0.918,
+        "LABEL": 0.9112,
+        "TEXT_INPUT": 0.2739,
+        "MAP": 0.8421,
+        "CHECK_BOX": 0.8725,
+        "SWITCH": 0.7789,
+        "PAGER_INDICATOR": 0.7067,
+        "SLIDER": 0.602,
+        "RADIO_BUTTON": 0.9939,
+        "SPINNER": 0.1818,
+        "PROGRESS_BAR": 0.9579,
+        "ADVERTISEMENT": 0.6667,
+        "DRAWER": 0.7692,
+        "NAVIGATION_BAR": 0.1818,
+        "TOOLBAR": 0.7077,
+        "LIST_ITEM": 0.3887,
+        "CARD_VIEW": 0.4783,
+        "CONTAINER": 0.5415,
+        "DATE_PICKER": 0.3333,
+        "NUMBER_STEPPER": 0.8889
+      },
+      "macro_f1_types_all_elements": 0.7086
+    },
+    "model2": {
+      "macro_f1_types": {
+        "value": 0.6603,
+        "lo": 0.6228,
+        "hi": 0.689,
+        "n": 8551
+      },
+      "macro_f1_types_support_ge_10": 0.6676,
+      "accuracy": 0.8382,
+      "predicted_invalid": 2802,
+      "per_class_f1": {
+        "IMAGE": 0.7302,
+        "PICTOGRAM": 0.8703,
+        "BUTTON": 0.6916,
+        "TEXT": 0.9145,
+        "LABEL": 0.8756,
+        "TEXT_INPUT": 0.2445,
+        "MAP": 0.807,
+        "CHECK_BOX": 0.8642,
+        "SWITCH": 0.7553,
+        "PAGER_INDICATOR": 0.7009,
+        "SLIDER": 0.5855,
+        "RADIO_BUTTON": 0.9897,
+        "SPINNER": 0.1773,
+        "PROGRESS_BAR": 0.945,
+        "ADVERTISEMENT": 0.5641,
+        "DRAWER": 0.8333,
+        "NAVIGATION_BAR": 0.1463,
+        "TOOLBAR": 0.7419,
+        "LIST_ITEM": 0.3801,
+        "CARD_VIEW": 0.439,
+        "CONTAINER": 0.5591,
+        "DATE_PICKER": 0.5,
+        "NUMBER_STEPPER": 0.871
+      },
+      "macro_f1_types_all_elements": 0.721
+    },
+    "box_colour": {
+      "macro_f1_types": {
+        "value": 0.3592,
+        "lo": 0.3456,
+        "hi": 0.3866,
+        "n": 8551
+      },
+      "macro_f1_types_support_ge_10": 0.3756,
+      "accuracy": 0.7457,
+      "predicted_invalid": 2636,
+      "per_class_f1": {
+        "IMAGE": 0.5942,
+        "PICTOGRAM": 0.843,
+        "BUTTON": 0.5727,
+        "TEXT": 0.8545,
+        "LABEL": 0.5501,
+        "TEXT_INPUT": 0.024,
+        "MAP": 0.0,
+        "CHECK_BOX": 0.6608,
+        "SWITCH": 0.6748,
+        "PAGER_INDICATOR": 0.6509,
+        "SLIDER": 0.0,
+        "RADIO_BUTTON": 0.6897,
+        "SPINNER": 0.0488,
+        "PROGRESS_BAR": 0.1868,
+        "ADVERTISEMENT": 0.1935,
+        "DRAWER": 0.9444,
+        "NAVIGATION_BAR": 0.1379,
+        "TOOLBAR": 0.1619,
+        "LIST_ITEM": 0.1505,
+        "CARD_VIEW": 0.0,
+        "CONTAINER": 0.157,
+        "DATE_PICKER": 0.0,
+        "NUMBER_STEPPER": 0.1667
+      },
+      "macro_f1_types_all_elements": 0.4463
+    },
+    "model3_frozen": {
+      "macro_f1_types": {
+        "value": 0.654,
+        "lo": 0.6302,
+        "hi": 0.6933,
+        "n": 8551
+      },
+      "macro_f1_types_support_ge_10": 0.6837,
+      "accuracy": 0.8454,
+      "predicted_invalid": 2404,
+      "per_class_f1": {
+        "IMAGE": 0.735,
+        "PICTOGRAM": 0.8866,
+        "BUTTON": 0.6992,
+        "TEXT": 0.9121,
+        "LABEL": 0.8585,
+        "TEXT_INPUT": 0.2763,
+        "MAP": 0.8,
+        "CHECK_BOX": 0.9171,
+        "SWITCH": 0.7905,
+        "PAGER_INDICATOR": 0.7402,
+        "SLIDER": 0.7043,
+        "RADIO_BUTTON": 0.9878,
+        "SPINNER": 0.2115,
+        "PROGRESS_BAR": 0.9153,
+        "ADVERTISEMENT": 0.6957,
+        "DRAWER": 0.8205,
+        "NAVIGATION_BAR": 0.2439,
+        "TOOLBAR": 0.6562,
+        "LIST_ITEM": 0.3703,
+        "CARD_VIEW": 0.4103,
+        "CONTAINER": 0.5689,
+        "DATE_PICKER": 0.0,
+        "NUMBER_STEPPER": 0.8421
+      },
+      "macro_f1_types_all_elements": 0.735
+    },
+    "model3": {
+      "macro_f1_types": {
+        "value": 0.6638,
+        "lo": 0.6389,
+        "hi": 0.7044,
+        "n": 8551
+      },
+      "macro_f1_types_support_ge_10": 0.694,
+      "accuracy": 0.8538,
+      "predicted_invalid": 2530,
+      "per_class_f1": {
+        "IMAGE": 0.7356,
+        "PICTOGRAM": 0.9047,
+        "BUTTON": 0.7091,
+        "TEXT": 0.9161,
+        "LABEL": 0.8509,
+        "TEXT_INPUT": 0.2792,
+        "MAP": 0.8421,
+        "CHECK_BOX": 0.9412,
+        "SWITCH": 0.8459,
+        "PAGER_INDICATOR": 0.8272,
+        "SLIDER": 0.6789,
+        "RADIO_BUTTON": 0.9897,
+        "SPINNER": 0.3363,
+        "PROGRESS_BAR": 0.8521,
+        "ADVERTISEMENT": 0.6977,
+        "DRAWER": 0.6667,
+        "NAVIGATION_BAR": 0.3256,
+        "TOOLBAR": 0.75,
+        "LIST_ITEM": 0.4003,
+        "CARD_VIEW": 0.3871,
+        "CONTAINER": 0.548,
+        "DATE_PICKER": 0.0,
+        "NUMBER_STEPPER": 0.7826
+      },
+      "macro_f1_types_all_elements": 0.7514
+    },
+    "box_cnn": {
+      "macro_f1_types": {
+        "value": 0.5566,
+        "lo": 0.512,
+        "hi": 0.5849,
+        "n": 8551
+      },
+      "macro_f1_types_support_ge_10": 0.5516,
+      "accuracy": 0.8122,
+      "predicted_invalid": 2854,
+      "per_class_f1": {
+        "IMAGE": 0.6586,
+        "PICTOGRAM": 0.8928,
+        "BUTTON": 0.6413,
+        "TEXT": 0.8956,
+        "LABEL": 0.6796,
+        "TEXT_INPUT": 0.2332,
+        "MAP": 0.2105,
+        "CHECK_BOX": 0.9177,
+        "SWITCH": 0.8408,
+        "PAGER_INDICATOR": 0.8228,
+        "SLIDER": 0.5792,
+        "RADIO_BUTTON": 0.8694,
+        "SPINNER": 0.4695,
+        "PROGRESS_BAR": 0.6129,
+        "ADVERTISEMENT": 0.5263,
+        "DRAWER": 0.6286,
+        "NAVIGATION_BAR": 0.2162,
+        "TOOLBAR": 0.3571,
+        "LIST_ITEM": 0.2096,
+        "CARD_VIEW": 0.12,
+        "CONTAINER": 0.3026,
+        "DATE_PICKER": 0.6667,
+        "NUMBER_STEPPER": 0.45
+      },
+      "macro_f1_types_all_elements": 0.6359
+    },
+    "model4": {
+      "macro_f1_types": {
+        "value": 0.6687,
+        "lo": 0.6469,
+        "hi": 0.7085,
+        "n": 8551
+      },
+      "macro_f1_types_support_ge_10": 0.699,
+      "accuracy": 0.8712,
+      "predicted_invalid": 0,
+      "per_class_f1": {
+        "IMAGE": 0.7755,
+        "PICTOGRAM": 0.9118,
+        "BUTTON": 0.6851,
+        "TEXT": 0.9214,
+        "LABEL": 0.8662,
+        "TEXT_INPUT": 0.6695,
+        "MAP": 0.8276,
+        "CHECK_BOX": 0.9537,
+        "SWITCH": 0.8521,
+        "PAGER_INDICATOR": 0.7038,
+        "SLIDER": 0.7663,
+        "RADIO_BUTTON": 0.9856,
+        "SPINNER": 0.287,
+        "PROGRESS_BAR": 0.9557,
+        "ADVERTISEMENT": 0.6087,
+        "DRAWER": 0.7333,
+        "NAVIGATION_BAR": 0.0,
+        "TOOLBAR": 0.7586,
+        "LIST_ITEM": 0.4613,
+        "CARD_VIEW": 0.1905,
+        "CONTAINER": 0.6181,
+        "DATE_PICKER": 0.0,
+        "NUMBER_STEPPER": 0.8475
+      }
+    },
+    "model5": {
+      "macro_f1_types": {
+        "value": 0.4839,
+        "lo": 0.4645,
+        "hi": 0.5202,
+        "n": 8551
+      },
+      "macro_f1_types_support_ge_10": 0.5059,
+      "accuracy": 0.845,
+      "predicted_invalid": 0,
+      "per_class_f1": {
+        "IMAGE": 0.7292,
+        "PICTOGRAM": 0.9026,
+        "BUTTON": 0.6378,
+        "TEXT": 0.9004,
+        "LABEL": 0.6473,
+        "TEXT_INPUT": 0.4883,
+        "MAP": 0.381,
+        "CHECK_BOX": 0.9286,
+        "SWITCH": 0.8407,
+        "PAGER_INDICATOR": 0.7635,
+        "SLIDER": 0.7135,
+        "RADIO_BUTTON": 0.7821,
+        "SPINNER": 0.3105,
+        "PROGRESS_BAR": 0.3778,
+        "ADVERTISEMENT": 0.4103,
+        "DRAWER": 0.7143,
+        "NAVIGATION_BAR": 0.0,
+        "TOOLBAR": 0.0,
+        "LIST_ITEM": 0.1509,
+        "CARD_VIEW": 0.0,
+        "CONTAINER": 0.3953,
+        "DATE_PICKER": 0.0,
+        "NUMBER_STEPPER": 0.0556
+      }
+    },
+    "model6": {
+      "macro_f1_types": {
+        "value": 0.5742,
+        "lo": 0.5549,
+        "hi": 0.6155,
+        "n": 8551
+      },
+      "macro_f1_types_support_ge_10": 0.6003,
+      "accuracy": 0.8496,
+      "predicted_invalid": 0,
+      "per_class_f1": {
+        "IMAGE": 0.7267,
+        "PICTOGRAM": 0.8637,
+        "BUTTON": 0.6795,
+        "TEXT": 0.9184,
+        "LABEL": 0.9074,
+        "TEXT_INPUT": 0.616,
+        "MAP": 0.5652,
+        "CHECK_BOX": 0.8581,
+        "SWITCH": 0.762,
+        "PAGER_INDICATOR": 0.5969,
+        "SLIDER": 0.5805,
+        "RADIO_BUTTON": 0.9798,
+        "SPINNER": 0.1443,
+        "PROGRESS_BAR": 0.8916,
+        "ADVERTISEMENT": 0.5,
+        "DRAWER": 0.1111,
+        "NAVIGATION_BAR": 0.0,
+        "TOOLBAR": 0.5769,
+        "LIST_ITEM": 0.4692,
+        "CARD_VIEW": 0.0,
+        "CONTAINER": 0.5834,
+        "DATE_PICKER": 0.0,
+        "NUMBER_STEPPER": 0.8772
+      }
+    },
+    "model5_box": {
+      "macro_f1_types": {
+        "value": 0.2283,
+        "lo": 0.2208,
+        "hi": 0.2448,
+        "n": 8551
+      },
+      "macro_f1_types_support_ge_10": 0.2387,
+      "accuracy": 0.7593,
+      "predicted_invalid": 0,
+      "per_class_f1": {
+        "IMAGE": 0.5744,
+        "PICTOGRAM": 0.8188,
+        "BUTTON": 0.5025,
+        "TEXT": 0.8372,
+        "LABEL": 0.3167,
+        "TEXT_INPUT": 0.1763,
+        "MAP": 0.0,
+        "CHECK_BOX": 0.6097,
+        "SWITCH": 0.4612,
+        "PAGER_INDICATOR": 0.687,
+        "SLIDER": 0.0,
+        "RADIO_BUTTON": 0.0989,
+        "SPINNER": 0.0,
+        "PROGRESS_BAR": 0.1692,
+        "ADVERTISEMENT": 0.0,
+        "DRAWER": 0.0,
+        "NAVIGATION_BAR": 0.0,
+        "TOOLBAR": 0.0,
+        "LIST_ITEM": 0.0,
+        "CARD_VIEW": 0.0,
+        "CONTAINER": 0.0,
+        "DATE_PICKER": 0.0,
+        "NUMBER_STEPPER": 0.0
+      }
+    }
+  },
+  "seeds": {
+    "model1": {
+      "values": [
+        0.6621,
+        0.6417,
+        0.6436
+      ],
+      "mean": 0.6491,
+      "std": 0.0092
+    },
+    "model2": {
+      "values": [
+        0.6603,
+        0.6489,
+        0.6428
+      ],
+      "mean": 0.6507,
+      "std": 0.0072
+    },
+    "model3": {
+      "values": [
+        0.6638,
+        0.6735,
+        0.6929
+      ],
+      "mean": 0.6767,
+      "std": 0.0121
+    }
+  },
+  "paired": {
+    "model4_minus_model3": {
+      "value": 0.0049,
+      "lo": -0.0125,
+      "hi": 0.0248,
+      "n": 8551,
+      "p_a_not_better": 0.288
+    },
+    "model4_minus_model6": {
+      "value": 0.0944,
+      "lo": 0.0546,
+      "hi": 0.1147,
+      "n": 8551,
+      "p_a_not_better": 0.0
+    },
+    "model5_minus_model5_box": {
+      "value": 0.2556,
+      "lo": 0.2363,
+      "hi": 0.2827,
+      "n": 8551,
+      "p_a_not_better": 0.0
+    },
+    "model3_minus_model2": {
+      "value": 0.0035,
+      "lo": -0.027,
+      "hi": 0.0679,
+      "n": 8551,
+      "p_a_not_better": 0.382
+    },
+    "model2_minus_model1": {
+      "value": -0.0018,
+      "lo": -0.0189,
+      "hi": 0.0224,
+      "n": 8551,
+      "p_a_not_better": 0.682
+    },
+    "model5_minus_box_cnn": {
+      "value": -0.0727,
+      "lo": -0.1035,
+      "hi": -0.0049,
+      "n": 8551,
+      "p_a_not_better": 0.991
+    },
+    "model6_minus_model1": {
+      "value": -0.0878,
+      "lo": -0.116,
+      "hi": -0.0305,
+      "n": 8551,
+      "p_a_not_better": 1.0
+    }
+  },
+  "notes": [
+    "Leaves = valid elements with no valid child; invalid F1 cannot be measured on them.",
+    "Models 1-3 were trained on all elements; Models 4-6 type heads on leaves only (auxiliary loss, weight 0.2)."
+  ]
+}

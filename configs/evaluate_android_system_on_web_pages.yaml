@@ -1,0 +1,33 @@
+# Android-to-web test: the final Android-trained system on WebUI pages, no retraining.
+#   python scripts/evaluate_android_system_on_web_pages.py --config configs/evaluate_android_system_on_web_pages.yaml --stage <fetch|build|run|test>
+# Every setting below was fixed before any web result was looked at.
+raw_dir: data/raw/webui            # downloaded page files (git-ignored)
+cache_dir: data/processed/web      # built inputs and crop embeddings (git-ignored)
+runs_root: results/runs
+seed: 0
+n_test_pages: 1000                 # random pages of WebUI's official test split (split by website domain)
+n_val_pages: 100                   # random pages of WebUI's validation split: element rules set on these only
+devices: [phone, desktop]          # phone = iPhone 13 Pro viewport (portrait, like the Android screens); desktop = 1280 x 720
+workers: 6                         # laptop RAM
+fetch_threads: 16
+n_boot: 1000
+
+# ---- the system under test: planned provenance system, as the demo runs it (laptop CPU, float32 crops stored float16)
+fusion_config: configs/train_trust_score_on_corrupted_metadata.yaml        # candidate pool and min IoU, identical to training
+model: data/models/fusion_full_s0/model.pt
+encoder: data/models/fusion_full_s0/enc.pkl
+model3_ckpt: data/models/element_types_cnn/model3_lr2.pt
+android_test_run: results/runs/colab_trust_score/trust_score_test_run1/metrics.json   # t_c, t_e = the Android validation choices
+
+# ---- levels: no web data is corrupted with Android fakes (they would look Android-made); real metadata is
+# the page's own tree, which is also where the true tree comes from, so the real level is a ceiling check only
+levels: [real, drop50, absent]
+corruption_seed: 13                # Android train / dev / test used 10 / 11 / 12
+xy_tol: 0.002                      # XY-cut rule baseline, as on Android
+flag_fill: {long_clickable: false, scrollable_v: false, scrollable_h: false, draw: false}   # Android clean-train mode of flags with no web counterpart
+
+pairs:                             # paired bootstrap over pages, container F1
+  - [fusion_full_s0+trust, xycut]
+  - [fusion_full_s0, xycut]
+  - [fusion_full_s0+trust, fusion_full_s0]
+  - [fusion_full_s0+trust, raw_collapsed]

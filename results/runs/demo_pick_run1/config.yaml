@@ -1,0 +1,5 @@
+stage: pick
+n: 200
+seed: 0
+per_screen: results/runs/colab_trust_score/trust_score_test_run1/per_screen.csv.gz
+system: fusion_full_s0+trust

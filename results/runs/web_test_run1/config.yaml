@@ -1,0 +1,37 @@
+raw_dir: data/raw/webui
+cache_dir: data/processed/web
+runs_root: results/runs
+seed: 0
+n_test_pages: 1000
+n_val_pages: 100
+devices:
+- phone
+- desktop
+workers: 6
+fetch_threads: 16
+n_boot: 1000
+fusion_config: configs/train_trust_score_on_corrupted_metadata.yaml
+model: data/models/fusion_full_s0/model.pt
+encoder: data/models/fusion_full_s0/enc.pkl
+model3_ckpt: data/models/element_types_cnn/model3_lr2.pt
+android_test_run: results/runs/colab_trust_score/trust_score_test_run1/metrics.json
+levels:
+- real
+- drop50
+- absent
+corruption_seed: 13
+xy_tol: 0.002
+flag_fill:
+  long_clickable: false
+  scrollable_v: false
+  scrollable_h: false
+  draw: false
+pairs:
+- - fusion_full_s0+trust
+  - xycut
+- - fusion_full_s0
+  - xycut
+- - fusion_full_s0+trust
+  - fusion_full_s0
+- - fusion_full_s0+trust
+  - raw_collapsed

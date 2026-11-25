@@ -1,0 +1,67 @@
+mlp_trial_00                 dev macro 0.7024 (epoch 30, n_train 807124)
+mlp_trial_01                 dev macro 0.6806 (epoch 15, n_train 807124)
+mlp_trial_02                 dev macro 0.4934 (epoch 2, n_train 807124)
+mlp_trial_03                 dev macro 0.6528 (epoch 11, n_train 807124)
+mlp_trial_04                 dev macro 0.4685 (epoch 21, n_train 807124)
+mlp_trial_05                 dev macro 0.6678 (epoch 30, n_train 807124)
+mlp_trial_06                 dev macro 0.6655 (epoch 4, n_train 807124)
+mlp_trial_07                 dev macro 0.5007 (epoch 2, n_train 807124)
+mlp_trial_08                 dev macro 0.6196 (epoch 5, n_train 807124)
+mlp_trial_09                 dev macro 0.6690 (epoch 4, n_train 807124)
+mlp_trial_10                 dev macro 0.6166 (epoch 1, n_train 807124)
+mlp_trial_11                 dev macro 0.6824 (epoch 14, n_train 807124)
+mlp_trial_12                 dev macro 0.4302 (epoch 7, n_train 807124)
+mlp_trial_13                 dev macro 0.4994 (epoch 2, n_train 807124)
+mlp_trial_14                 dev macro 0.6758 (epoch 19, n_train 807124)
+mlp_trial_15                 dev macro 0.4846 (epoch 11, n_train 807124)
+mlp_trial_16                 dev macro 0.6691 (epoch 11, n_train 807124)
+mlp_trial_17                 dev macro 0.7148 (epoch 18, n_train 807124)
+mlp_trial_18                 dev macro 0.6650 (epoch 7, n_train 807124)
+mlp_trial_19                 dev macro 0.7042 (epoch 17, n_train 807124)
+gbdt_trial_00 {'learning_rate': 0.1, 'max_leaf_nodes': 127, 'l2': 10.0, 'min_samples_leaf': 100, 'class_weight': 'balanced', 'max_iter': 500} -> {'macro_f1_types': 0.6126058424285186, 'invalid_f1': 0.20724214042832428} (43 it)
+gbdt_trial_01 {'learning_rate': 0.05, 'max_leaf_nodes': 31, 'l2': 1.0, 'min_samples_leaf': 100, 'class_weight': 'balanced', 'max_iter': 500} -> {'macro_f1_types': 0.5883860771867975, 'invalid_f1': 0.18218118292987273} (98 it)
+gbdt_trial_02 {'learning_rate': 0.1, 'max_leaf_nodes': 127, 'l2': 10.0, 'min_samples_leaf': 100, 'class_weight': None, 'max_iter': 500} -> {'macro_f1_types': 0.6779263652539987, 'invalid_f1': 0.23743848350446564} (500 it)
+gbdt_trial_03 {'learning_rate': 0.05, 'max_leaf_nodes': 127, 'l2': 1.0, 'min_samples_leaf': 100, 'class_weight': 'balanced', 'max_iter': 500} -> {'macro_f1_types': 0.6158290470654263, 'invalid_f1': 0.19979085932213816} (65 it)
+gbdt_trial_04 {'learning_rate': 0.1, 'max_leaf_nodes': 63, 'l2': 1.0, 'min_samples_leaf': 100, 'class_weight': 'balanced', 'max_iter': 500} -> {'macro_f1_types': 0.6080561281806421, 'invalid_f1': 0.20489333494033987} (42 it)
+gbdt_trial_05 {'learning_rate': 0.05, 'max_leaf_nodes': 127, 'l2': 1.0, 'min_samples_leaf': 100, 'class_weight': None, 'max_iter': 500} -> {'macro_f1_types': 0.6805318705359793, 'invalid_f1': 0.23023284771510397} (500 it)
+gbdt_trial_06 {'learning_rate': 0.05, 'max_leaf_nodes': 31, 'l2': 1.0, 'min_samples_leaf': 100, 'class_weight': 'balanced', 'max_iter': 500} -> {'macro_f1_types': 0.5883860771867975, 'invalid_f1': 0.18218118292987273} (98 it)
+gbdt_trial_07 {'learning_rate': 0.05, 'max_leaf_nodes': 127, 'l2': 10.0, 'min_samples_leaf': 20, 'class_weight': None, 'max_iter': 500} -> {'macro_f1_types': 0.6777684300875108, 'invalid_f1': 0.2240433713673328} (500 it)
+{
+ "best_mlp": {
+  "trial": "mlp_trial_17",
+  "batch": 4096,
+  "max_epochs": 30,
+  "patience": 4,
+  "use_name": true,
+  "hidden": 256,
+  "layers": 3,
+  "dropout": 0.1,
+  "lr": 0.0009484557382638914,
+  "weight_decay": 0.0001,
+  "class_weight": "none",
+  "emb_dim": 32,
+  "use_pieces": true,
+  "best_epoch": 18,
+  "epoch": 18,
+  "train_loss": 0.6926993928282285,
+  "macro_f1_types": 0.7148268918549475,
+  "invalid_f1": 0.17844117249763608,
+  "sec": 20.9
+ },
+ "best_gbdt": {
+  "trial": "gbdt_trial_05",
+  "learning_rate": 0.05,
+  "max_leaf_nodes": 127,
+  "l2": 1.0,
+  "min_samples_leaf": 100,
+  "class_weight": null,
+  "max_iter": 500,
+  "n_iter": 500,
+  "macro_f1_types": 0.6805318705359793,
+  "invalid_f1": 0.23023284771510397
+ },
+ "anchor_mlp_dev_macro": 0.7024144763068563,
+ "n_mlp_trials": 20,
+ "n_gbdt_trials": 8
+}
+run dir: results\runs\element_types_mlp_tune_run1

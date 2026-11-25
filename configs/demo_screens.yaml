@@ -1,0 +1,15 @@
+# Demo screens (held-out test split), chosen by the rule in scripts/demo_checks_and_screen_choice.py (stage pick, results/runs/demo_pick_run1)
+# with one change made after looking: at most one showcase screen per app (866 and 868 are the same app's menu;
+# 868 replaced by the next in rank, 2362).
+host: 127.0.0.1
+port: 8050
+# Added for the demo video: 54688, from the showcase-eligible screens above (554), among those with
+# the most distinct true element types (6, the maximum); picked by eye from the top 12 for a readable screenshot,
+# after seeing the model's output on them, so it is labelled a chosen example.
+screens:
+  - {id: 54688, tag: Showcase, note: "Chosen example: many element types, real metadata errors removed"}
+  - {id: 218,  tag: Showcase, note: "Chosen example: correct tree, a real metadata error removed"}
+  - {id: 866,  tag: Showcase, note: "Chosen example: correct tree, real metadata errors removed"}
+  - {id: 2362, tag: Showcase, note: "Chosen example: correct tree, real metadata errors removed"}
+  - {id: 8454, tag: Typical,  note: "Score closest to the test-set mean"}
+  - {id: 3680, tag: Failure,  note: "Lowest score among eligible screens"}

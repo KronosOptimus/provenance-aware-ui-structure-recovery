@@ -1,0 +1,125 @@
+{
+  "config": {
+    "clay_dir": "data/raw/clay",
+    "rico_dir": "data/raw/rico/combined",
+    "out_dir": "data/processed",
+    "results": "results/node_table_check.json",
+    "screens": "clay",
+    "workers": 14,
+    "chunk": 400,
+    "limit": null,
+    "expected": {
+      "clay_rows": 1427915,
+      "clay_screens": 59555,
+      "split_train": 44629,
+      "split_dev": 6207,
+      "split_test": 8719,
+      "screens_with_background": 22273,
+      "labelled_per_screen_mean": 24.0,
+      "labelled_per_screen_median": 19,
+      "labelled_per_screen_p90": 48,
+      "labelled_per_screen_max": 277,
+      "join_rows_with_duplicates": 1428360
+    }
+  },
+  "seconds": 167.9,
+  "env": {
+    "python": "3.10.5",
+    "pandas": "2.3.3",
+    "pyarrow": "25.0.1",
+    "platform": "Windows-10-10.0.26300-SP0"
+  },
+  "checks": {
+    "clay_rows": true,
+    "screens": true,
+    "splits": true,
+    "every_label_matched": true,
+    "labelled_rows_equal_unique_clay_nodes": true,
+    "join_with_duplicates_reproduced": true,
+    "screens_with_background": true,
+    "labelled_per_screen": true,
+    "images_9x16_except_flagged_landscape": true
+  },
+  "all_checks_pass": true,
+  "measured": {
+    "clay_rows_raw": 1427915,
+    "clay_exact_duplicate_rows_removed": 2,
+    "clay_unique_labelled_nodes": 1427913,
+    "screens": 59555,
+    "screens_by_split": {
+      "train": 44629,
+      "test": 8719,
+      "dev": 6207
+    },
+    "screens_without_split": 0,
+    "rico_nodes_total": 6178504,
+    "labelled_rows_in_table": 1427913,
+    "labels_unmatched": 0,
+    "dup_pointer_rows": 2402,
+    "screens_with_dup_pointer": 43,
+    "dup_pointer_rows_whose_pointer_is_labelled": 443,
+    "labelled_nodes_by_split": {
+      "train": 1087078,
+      "test": 195217,
+      "dev": 145618
+    },
+    "labelled_per_screen": {
+      "mean": 23.98,
+      "median": 19.0,
+      "p90": 48.0,
+      "max": 277
+    },
+    "rico_nodes_per_screen": {
+      "mean": 103.74,
+      "median": 74.0,
+      "max": 2303
+    },
+    "screens_with_background": 22273,
+    "background_share_of_labelled": 0.1062,
+    "class_share_pct": {
+      "TEXT": 24.98,
+      "CONTAINER": 18.53,
+      "PICTOGRAM": 15.21,
+      "BACKGROUND": 10.62,
+      "LIST_ITEM": 8.69,
+      "BUTTON": 6.79,
+      "ROOT": 4.17,
+      "IMAGE": 4.13,
+      "TOOLBAR": 2.41,
+      "LABEL": 0.99,
+      "TEXT_INPUT": 0.78,
+      "CHECK_BOX": 0.4,
+      "NAVIGATION_BAR": 0.38,
+      "DRAWER": 0.38,
+      "CARD_VIEW": 0.33,
+      "PAGER_INDICATOR": 0.32,
+      "SPINNER": 0.24,
+      "SWITCH": 0.21,
+      "RADIO_BUTTON": 0.12,
+      "SLIDER": 0.1,
+      "PROGRESS_BAR": 0.08,
+      "NUMBER_STEPPER": 0.04,
+      "ADVERTISEMENT": 0.03,
+      "MAP": 0.03,
+      "DATE_PICKER": 0.02
+    },
+    "labelled_not_visible_to_user": 94,
+    "labelled_box_not_ok": 5,
+    "labelled_nonroot_with_unlabelled_raw_parent_pct": 33.55,
+    "labelled_nonroot_without_labelled_ancestor": 23,
+    "roots_labelled_ROOT": 59532,
+    "ROOT_label_not_at_node0": 0,
+    "depth_max": 30,
+    "image_sizes": {
+      "540x960": 12900,
+      "960x540": 7,
+      "1080x1920": 46620,
+      "1920x1080": 28
+    },
+    "images_not_9x16": 35,
+    "labelled_box_outside_unit_frame": 44,
+    "join_rows_raw_clay_x_rico_copies": 1428360,
+    "screens_img_landscape": 35,
+    "screens_without_ROOT_label": 23
+  }
+}

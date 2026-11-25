@@ -1,0 +1,53 @@
+# Model 1 type head + baselines. Run: python scripts/train_element_types_metadata_mlp.py --config configs/train_element_types_metadata_mlp.yaml --stage tune|dev|test
+# Selection metric: clean-dev macro_f1_types (23 types). Everything fitted on clean train only. Test: once (stage test).
+data_dir: data/processed
+seed: 0
+min_count: 5                 # class names / camel pieces seen < 5 times in train -> UNK (92% of dev elements covered)
+workers: 4                   # parallel MLP trainings
+threads_per_worker: 4
+threads_main: 16
+n_boot: 1000
+
+# ---- tune stage (random search, 20 MLP runs)
+n_mlp_trials: 20
+mlp_fixed: {batch: 4096, max_epochs: 30, patience: 4, use_name: true}
+mlp_anchor:                  # trial 0 = proposal-era baseline settings (archive baseline: 256x2, dropout 0.2, Adam 1e-3, no weights)
+  hidden: 256
+  layers: 2
+  dropout: 0.2
+  lr: 0.001
+  weight_decay: 0.0
+  class_weight: none
+  emb_dim: 32
+  use_pieces: false
+mlp_space:
+  hidden: [128, 256, 512]
+  layers: [2, 3, 4]
+  dropout: [0.0, 0.1, 0.2, 0.3]
+  lr: {loguniform: [3.0e-4, 3.0e-3]}
+  weight_decay: [0.0, 1.0e-5, 1.0e-4]
+  class_weight: [none, inv_sqrt, inv]
+  emb_dim: [16, 32, 64]
+  use_pieces: [false, true]
+n_gbdt_trials: 8
+gbdt_space:                  # l2 >= 1: without it the multiclass boosting diverges on rare classes (checked on dev)
+  learning_rate: [0.05, 0.1]
+  max_leaf_nodes: [31, 63, 127]
+  l2: [1.0, 10.0]
+  min_samples_leaf: [20, 100]
+  class_weight: [none, balanced]
+  max_iter: [500]
+
+# ---- dev / test stages
+tune_run: results/runs/element_types_mlp_tune_run1
+gbdt_dev_max_iter: 2000      # tuned trees runs hit the 500 cap still improving; final fit gets more rounds (early stopping on train-only validation)
+dev_run: results/runs/element_types_mlp_dev_run1
+lc_fracs: [0.25, 0.5, 0.75]  # nested company subsets of clean train (100% = model1_s0)
+extra_seeds: [1, 2]
+paired:                      # A vs B on macro_f1_types (one-sided p that A is not better)
+  - [model1_s0, lookup]
+  - [model1_s0, gbdt]
+  - [model1_s0, box_tree_flags_s0]
+  - [box_tree_flags_s0, box_s0]
+  - [model1_s0, model1_frac75_s0]
+  - [gbdt, model1_s0]

@@ -1,0 +1,4 @@
+# App-disjoint splits + ground-truth elements/tree.  Run: python scripts/build_splits_and_targets.py --config configs/build_splits_and_targets.yaml
+data_dir: data/processed
+drop_dev_test_overlap: true   # also drop dev screens whose company is in test (model selection never sees a test company)
+results: results/splits_and_targets.json

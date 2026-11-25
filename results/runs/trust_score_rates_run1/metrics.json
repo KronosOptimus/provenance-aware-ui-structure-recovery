@@ -1,0 +1,45 @@
+{
+  "train": {
+    "n_screens": 33107,
+    "valid_leaves": 457275,
+    "invalid_elements": 49567,
+    "invalid_usable_box_total": 81748,
+    "invalid_held_as_candidates_or_wrappers": 32181,
+    "p_inj": 0.1083964791427478,
+    "invalid_share_of_elements": 0.09779576278208989,
+    "screens_with_invalid_element": 0.32835956142205575,
+    "per_screen_invalid_elements": {
+      "mean": 1.4971758238439001,
+      "median": 0.0,
+      "p90": 4.0,
+      "max": 162
+    },
+    "per_screen_invalid_share_if_any": {
+      "median": 0.15,
+      "p90": 0.5671641791044776
+    },
+    "sec": 16.7
+  },
+  "dev": {
+    "n_screens": 4860,
+    "valid_leaves": 63458,
+    "invalid_elements": 7338,
+    "invalid_usable_box_total": 11652,
+    "invalid_held_as_candidates_or_wrappers": 4314,
+    "p_inj": 0.11563553846638722,
+    "invalid_share_of_elements": 0.10364992372450421,
+    "screens_with_invalid_element": 0.3537037037037037,
+    "per_screen_invalid_elements": {
+      "mean": 1.5098765432098766,
+      "median": 0.0,
+      "p90": 4.0,
+      "max": 100
+    },
+    "per_screen_invalid_share_if_any": {
+      "median": 0.14285714285714285,
+      "p90": 0.5714285714285714
+    },
+    "sec": 5.3
+  },
+  "note": "p_inj = invalid elements / valid leaves on train; a heavy screen gets about twice its real errors"
+}

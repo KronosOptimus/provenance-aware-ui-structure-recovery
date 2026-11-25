@@ -1,0 +1,126 @@
+{
+ "web": {
+  "joint_s0": {
+   "t_c": 0.65,
+   "t_e": null
+  },
+  "joint_s0+trust": {
+   "t_c": 0.65,
+   "t_e": null
+  },
+  "joint_s1": {
+   "t_c": 0.25,
+   "t_e": null
+  },
+  "joint_s1+trust": {
+   "t_c": 0.25,
+   "t_e": null
+  },
+  "joint_s2": {
+   "t_c": 0.4,
+   "t_e": null
+  },
+  "joint_s2+trust": {
+   "t_c": 0.4,
+   "t_e": null
+  },
+  "fusion_full_s0": {
+   "t_c": 0.2,
+   "t_e": null
+  },
+  "fusion_full_s0+trust": {
+   "t_c": 0.2,
+   "t_e": null
+  },
+  "fusion_full_s1": {
+   "t_c": 0.25,
+   "t_e": null
+  },
+  "fusion_full_s1+trust": {
+   "t_c": 0.25,
+   "t_e": null
+  },
+  "fusion_full_s2": {
+   "t_c": 0.2,
+   "t_e": null
+  },
+  "fusion_full_s2+trust": {
+   "t_c": 0.2,
+   "t_e": null
+  },
+  "web_s0": {
+   "t_c": 0.35,
+   "t_e": null
+  },
+  "web_s1": {
+   "t_c": 0.55,
+   "t_e": null
+  },
+  "web_s2": {
+   "t_c": 0.6,
+   "t_e": null
+  }
+ },
+ "android": {
+  "joint_s0": {
+   "t_c": 0.5,
+   "t_e": null
+  },
+  "joint_s0+trust": {
+   "t_c": 0.5,
+   "t_e": 0.1
+  },
+  "joint_s1": {
+   "t_c": 0.45,
+   "t_e": null
+  },
+  "joint_s1+trust": {
+   "t_c": 0.35,
+   "t_e": 0.2
+  },
+  "joint_s2": {
+   "t_c": 0.5,
+   "t_e": null
+  },
+  "joint_s2+trust": {
+   "t_c": 0.5,
+   "t_e": 0.3
+  },
+  "web_s0": {
+   "t_c": 0.55,
+   "t_e": null
+  },
+  "web_s1": {
+   "t_c": 0.05,
+   "t_e": null
+  },
+  "web_s2": {
+   "t_c": 0.7,
+   "t_e": null
+  },
+  "fusion_full_s0": {
+   "t_c": 0.5,
+   "t_e": null
+  },
+  "fusion_full_s0+trust": {
+   "t_c": 0.5,
+   "t_e": 0.25
+  },
+  "fusion_full_s1": {
+   "t_c": 0.4,
+   "t_e": null
+  },
+  "fusion_full_s1+trust": {
+   "t_c": 0.4,
+   "t_e": 0.2
+  },
+  "fusion_full_s2": {
+   "t_c": 0.6,
+   "t_e": null
+  },
+  "fusion_full_s2+trust": {
+   "t_c": 0.6,
+   "t_e": 0.3
+  }
+ }
+}

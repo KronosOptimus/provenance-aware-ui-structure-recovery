@@ -1,0 +1,9 @@
+data_dir: data/processed
+image_dir: data/raw/rico/combined
+split: dev
+contain_tol: 0.002
+pixel_sample_screens: 400
+strip_px: 3
+edge_threshold: 12
+n_boot: 1000
+seed: 0

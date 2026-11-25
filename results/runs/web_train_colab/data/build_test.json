@@ -1,0 +1,18 @@
+{
+ "split": "test",
+ "pages": 1000,
+ "page_views": 2000,
+ "kept": 1880,
+ "fingerprint": "0ff6f299116cbea5a123a1e5eda10b1cbc3d6c94892c245769eabd17d2c29561",
+ "by_device": {
+  "desktop": {
+   "kept": 960,
+   "elements_median": 24.0
+  },
+  "phone": {
+   "kept": 920,
+   "elements_median": 16.0
+  }
+ },
+ "sec": 22.2
+}

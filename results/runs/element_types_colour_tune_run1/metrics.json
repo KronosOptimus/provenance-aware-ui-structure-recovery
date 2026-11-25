@@ -1,0 +1,25 @@
+{
+  "best_mlp": {
+    "trial": "mlp_trial_00",
+    "batch": 4096,
+    "max_epochs": 30,
+    "patience": 4,
+    "use_name": true,
+    "hidden": 256,
+    "layers": 3,
+    "dropout": 0.1,
+    "lr": 0.0009484557382638914,
+    "weight_decay": 0.0001,
+    "class_weight": "none",
+    "emb_dim": 32,
+    "use_pieces": true,
+    "best_epoch": 15,
+    "epoch": 15,
+    "train_loss": 0.5472594512000416,
+    "macro_f1_types": 0.7307326336122497,
+    "invalid_f1": 0.6118927030575877,
+    "sec": 21.3
+  },
+  "n_mlp_trials": 20,
+  "trial0_model1_settings_dev_macro": 0.7307326336122497
+}

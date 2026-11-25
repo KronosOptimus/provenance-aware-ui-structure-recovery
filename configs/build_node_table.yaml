@@ -1,0 +1,21 @@
+# Build the unified node table from RICO + CLAY.  Run: python scripts/build_node_table.py --config configs/build_node_table.yaml
+clay_dir: data/raw/clay
+rico_dir: data/raw/rico/combined
+out_dir: data/processed
+results: results/node_table_check.json
+screens: clay            # only the 59,555 CLAY screens (labelled, officially split)
+workers: 14
+chunk: 400               # screens per worker task
+limit: null              # set an int for a quick dry run on the first N screens
+expected:                # counts from an earlier exploratory run and the raw-data check
+  clay_rows: 1427915
+  clay_screens: 59555
+  split_train: 44629
+  split_dev: 6207
+  split_test: 8719
+  screens_with_background: 22273
+  labelled_per_screen_mean: 24.0
+  labelled_per_screen_median: 19
+  labelled_per_screen_p90: 48
+  labelled_per_screen_max: 277
+  join_rows_with_duplicates: 1428360

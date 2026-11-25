@@ -1,0 +1,93 @@
+seed: 0
+n_boot: 1000
+rescore_runs:
+- structure_rule_baselines_run1
+- structure_rule_baselines_run2
+- structure_candidate_pool_run1
+- structure_dev_run1
+- structure_test_run1
+pairs_from: structure_test_run1
+leaf_probs: results/runs/structure_test_run1/structure_test_leaf_probs.npz
+type_sources:
+  element_types_mlp_run: results/runs/element_types_mlp_test_run1/test_predictions.npz
+  element_types_colour_run: results/runs/element_types_colour_test_run1/test_probs.npz
+  element_types_cnn_run: data/upload/element_types_cnn_test_probs.npz
+systems:
+  lookup:
+  - element_types_colour_run
+  - lookup
+  gbdt_model1_inputs:
+  - element_types_colour_run
+  - gbdt
+  gbdt_model2_inputs:
+  - element_types_colour_run
+  - gbdt2
+  model1:
+  - element_types_colour_run
+  - model1_s0
+  model2:
+  - element_types_colour_run
+  - model2_s0
+  box_colour:
+  - element_types_colour_run
+  - box_colour_s0
+  model3_frozen:
+  - element_types_cnn_run
+  - model3_frozen
+  model3:
+  - element_types_cnn_run
+  - model3_s0
+  box_cnn:
+  - element_types_cnn_run
+  - boxcnn_s0
+  model4:
+  - leaf
+  - model4
+  model5:
+  - leaf
+  - model5
+  model6:
+  - leaf
+  - model6
+  model5_box:
+  - leaf
+  - model5_box
+seed_sets:
+  model1:
+  - - element_types_colour_run
+    - model1_s0
+  - - element_types_colour_run
+    - model1_s1
+  - - element_types_colour_run
+    - model1_s2
+  model2:
+  - - element_types_colour_run
+    - model2_s0
+  - - element_types_colour_run
+    - model2_s1
+  - - element_types_colour_run
+    - model2_s2
+  model3:
+  - - element_types_cnn_run
+    - model3_s0
+  - - element_types_cnn_run
+    - model3_s1
+  - - element_types_cnn_run
+    - model3_s2
+leaf_pairs:
+- - model4
+  - model3
+- - model4
+  - model6
+- - model5
+  - model5_box
+- - model3
+  - model2
+- - model2
+  - model1
+- - model5
+  - box_cnn
+- - model6
+  - model1
+small_class_min_support: 10
+stage: rescore

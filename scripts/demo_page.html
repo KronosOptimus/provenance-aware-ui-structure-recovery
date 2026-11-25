@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UI Structure Recovery</title>
+<style>
+  :root {
+    --bg: #fbfaff; --panel: #ffffff; --ink: #2b2d42; --muted: #6b6f86; --line: #e6e3f3;
+    --sky: #5fa8d3; --sky-soft: #dcefff; --lav: #9b86d6; --lav-soft: #ece6fb;
+    --pink: #e86fa0; --pink-soft: #fde3ee; --peach: #f0a35e; --peach-soft: #fff0e1;
+    --mint: #49b49a; --mint-soft: #dff5ee; --truth: #3d405b;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 14px/1.45 "Segoe UI", system-ui, sans-serif; }
+  header { padding: 14px 22px; border-bottom: 1px solid var(--line); background: var(--panel); }
+  header h1 { margin: 0; font-size: 19px; font-weight: 650; }
+  header p { margin: 2px 0 0; color: var(--muted); }
+  main { display: grid; grid-template-columns: 270px auto 1fr; gap: 18px; padding: 18px 22px; align-items: start; }
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 14px; }
+  h2 { font-size: 12px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin: 0 0 8px; }
+  .screens button { display: block; width: 100%; text-align: left; border: 1px solid var(--line); background: #fff;
+    border-radius: 9px; padding: 8px 10px; margin-bottom: 6px; cursor: pointer; font: inherit; color: inherit; }
+  .screens button.on { border-color: var(--lav); background: var(--lav-soft); }
+  .tag { display: inline-block; font-size: 11px; font-weight: 600; padding: 1px 7px; border-radius: 99px; margin-right: 6px; }
+  .tag.Showcase { background: var(--sky-soft); color: #23658e; }
+  .tag.Typical { background: var(--lav-soft); color: #5a4699; }
+  .tag.Failure { background: var(--pink-soft); color: #a3305f; }
+  .tag.Other { background: #eee; color: #555; }
+  .note { display: block; color: var(--muted); font-size: 12px; margin-top: 2px; }
+  .other { display: flex; gap: 6px; margin-top: 4px; }
+  .other input { flex: 1; min-width: 0; padding: 6px 8px; border: 1px solid var(--line); border-radius: 8px; font: inherit; }
+  .other button, .run { border: 0; background: var(--lav); color: #fff; border-radius: 8px; padding: 6px 12px; cursor: pointer; font: inherit; }
+  label.lv { display: block; padding: 5px 4px; cursor: pointer; border-radius: 7px; }
+  label.lv:hover { background: var(--bg); }
+  .section { margin-top: 16px; }
+  .legend div { display: flex; align-items: center; gap: 8px; margin: 4px 0; font-size: 13px; }
+  .sw { width: 22px; height: 12px; border-radius: 3px; border: 2px solid; flex: none; }
+  .figure { position: relative; }
+  .figure svg { height: calc(100vh - 130px); max-height: 960px; min-height: 480px; width: auto; display: block;
+    border-radius: 12px; border: 1px solid var(--line); background: #fff; }
+  .shape { fill: transparent; stroke-width: 3; vector-effect: non-scaling-stroke; transition: fill .1s; }
+  .el { stroke: var(--sky); }
+  .el.removed { stroke: var(--pink); stroke-dasharray: 6 4; }
+  .el.pixels { stroke: var(--mint); }
+  .ct { stroke-width: 2.5; }
+  .ct.metadata { stroke: var(--lav); }
+  .ct.inferred { stroke: var(--peach); stroke-dasharray: 9 5; }
+  .truth { fill: transparent; stroke: var(--truth); stroke-width: 2; stroke-dasharray: 2 4; vector-effect: non-scaling-stroke; }
+  .shape.hi { stroke-width: 5; fill: rgba(155, 134, 214, .18); }
+  .el.hi { fill: rgba(95, 168, 211, .2); }
+  .el.removed.hi { fill: rgba(232, 111, 160, .2); }
+  #tip { position: fixed; pointer-events: none; background: var(--ink); color: #fff; padding: 6px 9px; border-radius: 8px;
+    font-size: 12px; max-width: 280px; display: none; z-index: 9; }
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 12px; }
+  .stat { background: var(--bg); border-radius: 10px; padding: 8px 10px; }
+  .stat b { display: block; font-size: 20px; font-weight: 650; }
+  .stat span { color: var(--muted); font-size: 12px; }
+  .stat.read b { color: var(--lav); } .stat.inf b { color: var(--peach); } .stat.rem b { color: var(--pink); }
+  .tree ul { list-style: none; margin: 0; padding-left: 16px; border-left: 1px dashed var(--line); }
+  .tree > ul { padding-left: 0; border: 0; }
+  .row { padding: 2px 6px; border-radius: 6px; cursor: default; display: flex; gap: 6px; align-items: baseline; flex-wrap: wrap; }
+  .row:hover, .row.hi { background: var(--lav-soft); }
+  .pill { font-size: 11px; padding: 0 6px; border-radius: 99px; white-space: nowrap; }
+  .pill.metadata { background: var(--lav-soft); color: #5a4699; } .pill.inferred { background: var(--peach-soft); color: #9a5a1d; }
+  .pill.trust { background: var(--sky-soft); color: #23658e; } .pill.low { background: var(--pink-soft); color: #a3305f; }
+  .pill.hidden { background: #f1f1f4; color: var(--muted); }
+  .pill.answer { background: #3d405b; color: #fff; }
+  .muted { color: var(--muted); }
+  .answer-box { margin-top: 12px; padding: 10px 12px; border-radius: 10px; background: #f3f2f8; font-size: 13px; }
+  .scroll { max-height: calc(100vh - 330px); overflow: auto; }
+  @media (max-width: 1100px) { main { grid-template-columns: 1fr; } .figure svg { height: auto; width: 100%; max-height: none; min-height: 0; } }
+</style>
+</head>
+<body>
+<header>
+  <h1>UI structure recovery with provenance</h1>
+  <p>Screenshot + whatever metadata the app gives, in. A tree of components out, with a trust score per element and, per container, whether it was read from the metadata or inferred.</p>
+</header>
+<main>
+  <aside class="card">
+    <h2>Screen (held-out test set)</h2>
+    <div class="screens" id="screens"></div>
+    <div class="other"><input id="otherId" placeholder="Other test screen id"><button id="otherGo">Go</button></div>
+    <div class="section">
+      <h2>Metadata given to the model</h2>
+      <div id="levels"></div>
+    </div>
+    <div class="section">
+      <label class="lv"><input type="checkbox" id="answer"> Show answer key (true tree)</label>
+    </div>
+    <div class="section legend">
+      <h2>Legend</h2>
+      <div><span class="sw" style="border-color:var(--sky)"></span>Element, trusted</div>
+      <div><span class="sw" style="border-color:var(--pink);border-style:dashed"></span>Element, distrusted and removed</div>
+      <div><span class="sw" style="border-color:var(--mint)"></span>Element, no metadata to judge</div>
+      <div><span class="sw" style="border-color:var(--lav)"></span>Container read from metadata</div>
+      <div><span class="sw" style="border-color:var(--peach);border-style:dashed"></span>Container inferred by the model</div>
+      <div><span class="sw" style="border-color:var(--truth);border-style:dotted"></span>True container (answer key)</div>
+    </div>
+  </aside>
+  <section class="figure">
+    <svg id="fig" viewBox="0 0 540 960" preserveAspectRatio="xMidYMid meet"></svg>
+  </section>
+  <section class="card" id="side">
+    <div class="stats" id="stats"></div>
+    <h2>Recovered tree</h2>
+    <div class="tree scroll" id="tree"></div>
+    <div id="answerBox"></div>
+  </section>
+</main>
+<div id="tip"></div>
+<script>
+const S = { info: null, sid: null, level: "real", res: null };
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const NS = "http://www.w3.org/2000/svg";
+
+async function init() {
+  S.info = await (await fetch("/api/info")).json();
+  $("screens").innerHTML = S.info.screens.map((s) =>
+    `<button data-id="${s.id}"><span class="tag ${s.tag}">${s.tag}</span>Screen ${s.id}<span class="note">${esc(s.note)}</span></button>`).join("");
+  $("screens").querySelectorAll("button").forEach((b) => (b.onclick = () => pick(+b.dataset.id)));
+  $("levels").innerHTML = S.info.levels.map((l) =>
+    `<label class="lv"><input type="radio" name="lv" value="${l.id}" ${l.id === "real" ? "checked" : ""}> ${esc(l.text)}</label>`).join("");
+  document.querySelectorAll("input[name=lv]").forEach((r) => (r.onchange = () => { S.level = r.value; run(); }));
+  $("answer").onchange = draw;
+  $("otherGo").onclick = () => { const v = parseInt($("otherId").value, 10); if (v >= 0) pick(v); };
+  $("otherId").onkeydown = (e) => { if (e.key === "Enter") $("otherGo").click(); };
+  pick(S.info.screens[0].id);
+}
+
+function pick(id) {
+  S.sid = id;
+  $("screens").querySelectorAll("button").forEach((b) => b.classList.toggle("on", +b.dataset.id === id));
+  run();
+}
+
+async function run() {
+  const r = await fetch(`/api/run?sid=${S.sid}&level=${S.level}`);
+  if (!r.ok) { $("stats").innerHTML = `<p class="muted">Screen ${S.sid} is not in the test set.</p>`; return; }
+  S.res = await r.json();
+  draw();
+}
+
+function rect(b, cls, id) {
+  const e = document.createElementNS(NS, "rect");
+  e.setAttribute("x", b[0] * 540); e.setAttribute("y", b[1] * 960);
+  e.setAttribute("width", Math.max((b[2] - b[0]) * 540, 1)); e.setAttribute("height", Math.max((b[3] - b[1]) * 960, 1));
+  e.setAttribute("class", cls);
+  if (id) e.dataset.id = id;
+  return e;
+}
+
+function elTip(e) {
+  const t = e.trust === null ? "no metadata to judge" : `trust ${e.trust.toFixed(2)}${e.removed ? " (removed)" : ""}`;
+  return `<b>${esc(e.type)}</b> (${(e.type_p * 100).toFixed(0)}%)<br>${t}` +
+    (e.class_name ? `<br>metadata class: ${esc(e.class_name)}` : (e.masked && S.res.has_meta ? "<br>metadata hidden" : ""));
+}
+function ctTip(c) {
+  return `<b>Container</b>, ${c.source === "metadata" ? "read from metadata" + (c.class_name ? ` (${esc(c.class_name)})` : "") : "inferred by the model"}` +
+    `<br>score ${c.score.toFixed(2)}, ${c.members.length} element(s)`;
+}
+
+function draw() {
+  const R = S.res, svg = $("fig"), ans = $("answer").checked;
+  svg.innerHTML = "";
+  const img = document.createElementNS(NS, "image");
+  img.setAttribute("href", `/img/${R.screen_id}.jpg`);
+  img.setAttribute("width", 540); img.setAttribute("height", 960); img.setAttribute("preserveAspectRatio", "none");
+  svg.appendChild(img);
+  const tips = {};
+  if (ans) R.truth.forEach((t) => svg.appendChild(rect(t.box, "truth")));
+  [...R.containers].sort((a, b) => a.depth - b.depth).forEach((c) => {
+    svg.appendChild(rect(c.box, `shape ct ${c.source}`, c.id)); tips[c.id] = ctTip(c);
+  });
+  R.elements.forEach((e) => {
+    const cls = e.trust === null ? "pixels" : e.removed ? "removed" : "";
+    svg.appendChild(rect(e.box, `shape el ${cls}`, e.id)); tips[e.id] = elTip(e) + (ans ? `<br>answer: ${esc(e.kind)}` : "");
+  });
+  svg.querySelectorAll(".shape").forEach((s) => {
+    s.onmousemove = (ev) => { const t = $("tip"); t.innerHTML = tips[s.dataset.id]; t.style.display = "block";
+      t.style.left = ev.clientX + 14 + "px"; t.style.top = ev.clientY + 14 + "px"; hi(s.dataset.id, true); };
+    s.onmouseleave = () => { $("tip").style.display = "none"; hi(s.dataset.id, false); };
+  });
+
+  const m = R.summary;
+  $("stats").innerHTML =
+    `<div class="stat"><b>${m.elements}</b><span>elements</span></div>` +
+    `<div class="stat read"><b>${m.read_from_metadata}</b><span>containers read from metadata</span></div>` +
+    `<div class="stat inf"><b>${m.inferred}</b><span>containers inferred</span></div>` +
+    `<div class="stat rem"><b>${R.has_meta ? m.removed : "–"}</b><span>elements distrusted and removed</span></div>` +
+    `<div class="stat"><b>${R.has_meta ? m.masked : m.elements}</b><span>elements with metadata hidden</span></div>` +
+    `<div class="stat"><b>${R.seconds.toFixed(2)} s</b><span>run time (laptop CPU)</span></div>`;
+
+  const kids = {};
+  const add = (p, n) => (kids[p] = kids[p] || []).push(n);
+  R.containers.forEach((c) => add(c.parent || "root", { ...c, isC: true }));
+  R.elements.filter((e) => !e.removed).forEach((e) => add(e.parent || "root", e));
+  const row = (n) => n.isC
+    ? `<div class="row" data-id="${n.id}"><b>Container</b><span class="pill ${n.source}">${n.source === "metadata" ? "read from metadata" : "inferred"}</span>` +
+      `${n.class_name ? `<span class="muted">${esc(n.class_name)}</span>` : ""}<span class="muted">score ${n.score.toFixed(2)}</span></div>`
+    : `<div class="row" data-id="${n.id}">${esc(n.type)}` +
+      (n.trust === null ? "" : `<span class="pill trust">trust ${n.trust.toFixed(2)}</span>`) +
+      (n.masked && R.has_meta ? `<span class="pill hidden">metadata hidden</span>` : "") +
+      (ans && n.kind !== "valid" ? `<span class="pill answer">${esc(n.kind)}</span>` : "") + `</div>`;
+  const ul = (p) => !kids[p] ? "" : "<ul>" + kids[p].map((n) => `<li>${row(n)}${n.isC ? ul(n.id) : ""}</li>`).join("") + "</ul>";
+  const removed = R.elements.filter((e) => e.removed);
+  $("tree").innerHTML = ul("root") + (removed.length
+    ? `<h2 style="margin-top:14px">Removed as untrustworthy (trust below ${R.t_e})</h2><ul>` + removed.map((e) =>
+      `<li><div class="row" data-id="${e.id}">${esc(e.type)}<span class="pill low">trust ${e.trust.toFixed(2)}</span>` +
+      (ans ? `<span class="pill answer">${esc(e.kind)}</span>` : "") + `</div></li>`).join("") + "</ul>" : "");
+  $("tree").querySelectorAll(".row").forEach((r) => {
+    r.onmouseenter = () => hi(r.dataset.id, true); r.onmouseleave = () => hi(r.dataset.id, false);
+  });
+
+  const A = R.answer, ts = S.info.test_set[R.level];
+  $("answerBox").innerHTML = ans
+    ? `<div class="answer-box"><b>Answer key for this screen.</b> Container F1 ${A.container_f1.toFixed(3)} against ${A.true_containers} true container(s). ` +
+      `Unfaithful elements in the metadata: ${A.unfaithful_elements}; removed ${A.removed_unfaithful}, kept ${A.kept_unfaithful}. Valid elements wrongly removed: ${A.removed_valid}.` +
+      `<br><span class="muted">Whole test set (${S.info.n_test.toLocaleString("en")} screens), same metadata level: mean container F1 ${ts.toFixed(3)}.</span></div>`
+    : `<div class="answer-box muted">Whole test set (${S.info.n_test.toLocaleString("en")} screens), this metadata level: mean container F1 ${ts.toFixed(3)}. Tick "Show answer key" to compare this screen with its true tree.</div>`;
+}
+
+function hi(id, on) {
+  document.querySelectorAll(`[data-id="${id}"]`).forEach((x) => x.classList.toggle("hi", on));
+}
+init();
+</script>
+</body>
+</html>

@@ -1,0 +1,5 @@
+seed: 0
+n_boot: 1000
+dev: results\runs\colab_trust_score\trust_score_dev_run2
+test: results\runs\colab_trust_score\trust_score_test_run1
+structure_test: results\runs\colab_trust_score\structure_leftover_test_run1

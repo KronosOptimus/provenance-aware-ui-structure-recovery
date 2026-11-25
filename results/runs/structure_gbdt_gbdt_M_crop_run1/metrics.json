@@ -1,0 +1,86 @@
+{
+  "model": "gbdt_M_crop",
+  "backbone": "model3",
+  "best": "t4",
+  "best_dev_ap": 0.9614277597014421,
+  "trials": {
+    "t0": {
+      "hp": {
+        "learning_rate": 0.1,
+        "max_leaf_nodes": 63,
+        "l2": 1.0,
+        "min_samples_leaf": 20,
+        "max_iter": 1000,
+        "max_cats": 250
+      },
+      "dev_ap": 0.9604184988100956,
+      "n_iter": 1000,
+      "minutes": 6.4
+    },
+    "t1": {
+      "hp": {
+        "learning_rate": 0.13004179095717477,
+        "max_leaf_nodes": 127,
+        "l2": 1.0,
+        "min_samples_leaf": 20,
+        "max_iter": 1000,
+        "max_cats": 250
+      },
+      "dev_ap": 0.960564395253784,
+      "n_iter": 509,
+      "minutes": 4.7
+    },
+    "t2": {
+      "hp": {
+        "learning_rate": 0.031163691053601533,
+        "max_leaf_nodes": 31,
+        "l2": 1.0,
+        "min_samples_leaf": 100,
+        "max_iter": 1000,
+        "max_cats": 250
+      },
+      "dev_ap": 0.9588430250582053,
+      "n_iter": 1000,
+      "minutes": 6.2
+    },
+    "t3": {
+      "hp": {
+        "learning_rate": 0.24540128471462097,
+        "max_leaf_nodes": 127,
+        "l2": 3.0,
+        "min_samples_leaf": 100,
+        "max_iter": 1000,
+        "max_cats": 250
+      },
+      "dev_ap": 0.9587665600141589,
+      "n_iter": 318,
+      "minutes": 3.5
+    },
+    "t4": {
+      "hp": {
+        "learning_rate": 0.10489293708866086,
+        "max_leaf_nodes": 127,
+        "l2": 3.0,
+        "min_samples_leaf": 100,
+        "max_iter": 1000,
+        "max_cats": 250
+      },
+      "dev_ap": 0.9614277597014421,
+      "n_iter": 600,
+      "minutes": 5.1
+    },
+    "t5": {
+      "hp": {
+        "learning_rate": 0.19632463958447474,
+        "max_leaf_nodes": 127,
+        "l2": 1.0,
+        "min_samples_leaf": 50,
+        "max_iter": 1000,
+        "max_cats": 250
+      },
+      "dev_ap": 0.9593883861196218,
+      "n_iter": 382,
+      "minutes": 3.7
+    }
+  }
+}

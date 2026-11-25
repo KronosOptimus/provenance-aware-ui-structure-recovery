@@ -1,0 +1,49 @@
+# Analysis of saved outputs only: no training, no selection, nothing new is run on the test split.
+seed: 0
+n_boot: 1000
+
+# ---- stage rescore: container F1 with one rule for screens without true containers
+# Empty-screen rule: a screen with no true container and no predicted container scores 1.0;
+# predicted containers on such a screen score 0.0. Every system is then averaged over the same screens.
+# Sensitivity row: only screens with at least one true container.
+rescore_runs:
+  - structure_rule_baselines_run1     # validation, rule baselines
+  - structure_rule_baselines_run2     # test, rule baselines
+  - structure_candidate_pool_run1         # validation, pool ceilings
+  - structure_dev_run1                  # validation, Models 4-6, trees, rules
+  - structure_test_run1                 # test, Models 4-6, trees, rules
+pairs_from: structure_test_run1         # pairs listed in that run's config.yaml (same pairs for validation)
+
+# ---- stage leaf_types: type macro-F1 of Models 1-6 on the same valid test leaves
+leaf_probs: results/runs/structure_test_run1/structure_test_leaf_probs.npz
+type_sources:
+  element_types_mlp_run: results/runs/element_types_mlp_test_run1/test_predictions.npz    # labels only (lookup)
+  element_types_colour_run: results/runs/element_types_colour_test_run1/test_probs.npz
+  element_types_cnn_run: data/upload/element_types_cnn_test_probs.npz
+systems:                            # name in report -> (source, key)
+  lookup: [element_types_colour_run, lookup]
+  gbdt_model1_inputs: [element_types_colour_run, gbdt]
+  gbdt_model2_inputs: [element_types_colour_run, gbdt2]
+  model1: [element_types_colour_run, model1_s0]
+  model2: [element_types_colour_run, model2_s0]
+  box_colour: [element_types_colour_run, box_colour_s0]
+  model3_frozen: [element_types_cnn_run, model3_frozen]
+  model3: [element_types_cnn_run, model3_s0]
+  box_cnn: [element_types_cnn_run, boxcnn_s0]
+  model4: [leaf, model4]
+  model5: [leaf, model5]
+  model6: [leaf, model6]
+  model5_box: [leaf, model5_box]
+seed_sets:                          # extra seeds of Models 1-3 (mean and spread on leaves)
+  model1: [[element_types_colour_run, model1_s0], [element_types_colour_run, model1_s1], [element_types_colour_run, model1_s2]]
+  model2: [[element_types_colour_run, model2_s0], [element_types_colour_run, model2_s1], [element_types_colour_run, model2_s2]]
+  model3: [[element_types_cnn_run, model3_s0], [element_types_cnn_run, model3_s1], [element_types_cnn_run, model3_s2]]
+leaf_pairs:
+  - [model4, model3]                # fusion over the whole screen vs per-element CNN
+  - [model4, model6]                # pixels with metadata present
+  - [model5, model5_box]            # pixels without metadata
+  - [model3, model2]
+  - [model2, model1]
+  - [model5, box_cnn]               # pixels-only: screen context vs per-element
+  - [model6, model1]                # metadata without pixels: screen context vs per-element
+small_class_min_support: 10         # sensitivity: macro-F1 without types that have fewer test leaves than this

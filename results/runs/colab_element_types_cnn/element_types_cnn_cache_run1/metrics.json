@@ -1,0 +1,19 @@
+{
+  "size": 96,
+  "train": {
+    "rows": 807124,
+    "seconds": 180,
+    "gb": 22.32
+  },
+  "dev": {
+    "rows": 111654,
+    "seconds": 31,
+    "gb": 3.09
+  },
+  "test": {
+    "rows": 186501,
+    "seconds": 50,
+    "gb": 5.16
+  },
+  "stage_minutes": 4.4
+}

@@ -1,0 +1,42 @@
+seed: 0
+min_count: 5
+n_boot: 1000
+work: /content/work
+data_dir: /content/work/processed
+img_dir: /content/work/screens
+extra_dir: /content/work/extra
+drive: /content/drive/MyDrive/uistruct
+runs_root: /content/drive/MyDrive/uistruct/runs
+ckpt_dir: /content/drive/MyDrive/uistruct/checkpoints
+element_types_mlp_tune_run: results/runs/element_types_mlp_tune_run1
+crop_workers: 12
+rico_url: https://storage.googleapis.com/crowdstf-rico-uiuc-4540/rico_dataset_v0.1/unique_uis.tar.gz
+rico_md5_b64: vc+Z1Nx/NqM5blfjBsdWlg==
+screens_sha256: d9c6226d459adbb3f267ebb5d8ec50a05374dc02d10115b93d6c5118fe13a95a
+pilot_sizes:
+- 64
+- 96
+- 128
+embed_batch: 2048
+size_tie: 0.002
+frozen_fixed:
+  batch: 4096
+  max_epochs: 30
+  patience: 4
+  chunk: 1
+  amp: true
+crop_size: null
+ft_fixed:
+  batch: 512
+  max_epochs: 8
+  patience: 2
+  chunk: 32
+  amp: true
+lr_backbone_trials:
+- 3.0e-05
+- 0.0001
+- 0.0003
+extra_seeds:
+- 1
+- 2
+stage: tune

@@ -1,0 +1,22 @@
+data_dir: data/processed
+split: dev
+contain_tol: 0.002
+pool:
+  singletons: true
+  all_leaves: true
+  xy_tols:
+  - 0.0
+  - 0.002
+  - 0.01
+  - 0.03
+  agglo_methods:
+  - single
+  - average
+  - complete
+min_iou: 0.5
+gate:
+  pool: P_all
+  margin: 0.15
+workers: 6
+n_boot: 1000
+seed: 0

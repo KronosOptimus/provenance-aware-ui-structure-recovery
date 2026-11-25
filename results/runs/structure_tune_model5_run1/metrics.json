@@ -1,0 +1,126 @@
+{
+  "model": "model5",
+  "backbone_trial0_ap": {
+    "model3": 0.8313341827105668,
+    "imagenet": 0.8180617550037101
+  },
+  "backbone": "model3",
+  "best": "t4_model3",
+  "best_dev_ap": 0.833902108101914,
+  "trials": {
+    "t0_model3": {
+      "hp": {
+        "d": 128,
+        "heads": 4,
+        "layers": 3,
+        "ffn": 256,
+        "dropout": 0.1,
+        "lr": 0.001,
+        "weight_decay": 0.01,
+        "clip": 1.0,
+        "max_epochs": 30,
+        "patience": 4,
+        "budget": 400000,
+        "type_weight": 0.2
+      },
+      "dev_ap": 0.8313341827105668,
+      "best_epoch": 11,
+      "minutes": 4.6
+    },
+    "t1_model3": {
+      "hp": {
+        "d": 128,
+        "heads": 4,
+        "layers": 2,
+        "ffn": 256,
+        "dropout": 0.0,
+        "lr": 0.001300417909571747,
+        "weight_decay": 0.01,
+        "clip": 1.0,
+        "max_epochs": 30,
+        "patience": 4,
+        "budget": 400000,
+        "type_weight": 0.1
+      },
+      "dev_ap": 0.828059488829797,
+      "best_epoch": 9,
+      "minutes": 3.7
+    },
+    "t2_model3": {
+      "hp": {
+        "d": 64,
+        "heads": 4,
+        "layers": 3,
+        "ffn": 128,
+        "dropout": 0.2,
+        "lr": 0.0019516030758660366,
+        "weight_decay": 0.05,
+        "clip": 1.0,
+        "max_epochs": 30,
+        "patience": 4,
+        "budget": 400000,
+        "type_weight": 0.2
+      },
+      "dev_ap": 0.8280785035638599,
+      "best_epoch": 12,
+      "minutes": 4.9
+    },
+    "t3_model3": {
+      "hp": {
+        "d": 128,
+        "heads": 4,
+        "layers": 3,
+        "ffn": 256,
+        "dropout": 0.1,
+        "lr": 0.0016092288713872786,
+        "weight_decay": 0.1,
+        "clip": 1.0,
+        "max_epochs": 30,
+        "patience": 4,
+        "budget": 400000,
+        "type_weight": 0.1
+      },
+      "dev_ap": 0.8285217006236559,
+      "best_epoch": 9,
+      "minutes": 4.1
+    },
+    "t4_model3": {
+      "hp": {
+        "d": 256,
+        "heads": 4,
+        "layers": 3,
+        "ffn": 512,
+        "dropout": 0.2,
+        "lr": 0.00030189766560119436,
+        "weight_decay": 0.05,
+        "clip": 1.0,
+        "max_epochs": 30,
+        "patience": 4,
+        "budget": 400000,
+        "type_weight": 0.1
+      },
+      "dev_ap": 0.833902108101914,
+      "best_epoch": 9,
+      "minutes": 4.3
+    },
+    "t5_model3": {
+      "hp": {
+        "d": 256,
+        "heads": 4,
+        "layers": 2,
+        "ffn": 512,
+        "dropout": 0.0,
+        "lr": 0.0016098177110656306,
+        "weight_decay": 0.1,
+        "clip": 1.0,
+        "max_epochs": 30,
+        "patience": 4,
+        "budget": 400000,
+        "type_weight": 0.1
+      },
+      "dev_ap": 0.8279185855411947,
+      "best_epoch": 16,
+      "minutes": 6.0
+    }
+  }
+}

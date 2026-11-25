@@ -1,0 +1,16 @@
+# GPU speed test on Colab: how fast a CNN processes element crops.
+# Used only to estimate training hours for the CNN models. Random inputs, no project data.
+seed: 0
+model: resnet18            # torchvision, random weights (same compute as pretrained)
+image_sizes: [64, 128, 224]  # crop side in pixels
+batch_size: 256
+warmup_steps: 5
+timed_steps: 30
+amp: [false, true]          # float32 and mixed precision (float16)
+# CPU side: decode + resize one screenshot, then cut crops (RICO screenshots are 1080x1920 or 540x960 JPEGs)
+screenshot_size: [1080, 1920]
+resize_to: [540, 960]       # same as the colour features
+crops_per_screen: 24        # CLAY mean is 24.0 nodes per screen (results/explore_data.json)
+cpu_repeats: 20
+# Element counts in the clean splits (results/runs/colour_features_run1/metrics.json)
+n_elements: {train: 807124, dev: 111654, test: 186501}

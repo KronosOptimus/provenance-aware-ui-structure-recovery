@@ -1,0 +1,11 @@
+{
+  "split": "dev",
+  "n_screens": 4860,
+  "n_boxes": 208260,
+  "boxes_per_screen": 42.851851851851855,
+  "backbones": [
+    "model3",
+    "imagenet"
+  ],
+  "sec": 45.3
+}

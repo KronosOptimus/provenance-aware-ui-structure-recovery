@@ -1,0 +1,11 @@
+# Measurements of what the nesting step receives. Clean dev only.
+# Run: python scripts/measure_structure_inputs.py --config configs/measure_structure_inputs.yaml
+data_dir: data/processed
+image_dir: data/raw/rico/combined
+split: dev
+contain_tol: 0.002          # same as structure_rule_baselines_true_elements.yaml
+pixel_sample_screens: 400   # screens sampled for the pixel-edge check
+strip_px: 3                 # strip width either side of a box edge, in screenshot pixels (1080 wide)
+edge_threshold: 12          # mean |inside - outside| on 0-255 above which an edge counts as visible
+n_boot: 1000
+seed: 0

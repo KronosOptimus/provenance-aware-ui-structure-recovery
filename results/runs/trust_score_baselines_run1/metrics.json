@@ -1,0 +1,18 @@
+{
+  "file": "data/upload/trust_score_baselines.npz",
+  "mb": 4.36,
+  "rows": {
+    "dev": 111654,
+    "test": 186501
+  },
+  "sources": [
+    "dev_box_colour",
+    "dev_gbdt2",
+    "dev_model2",
+    "test_box_colour",
+    "test_boxcnn",
+    "test_gbdt2",
+    "test_model2",
+    "test_model3"
+  ]
+}

@@ -1,0 +1,24 @@
+seed: 0
+model: resnet18
+image_sizes:
+- 64
+- 128
+- 224
+batch_size: 256
+warmup_steps: 5
+timed_steps: 30
+amp:
+- false
+- true
+screenshot_size:
+- 1080
+- 1920
+resize_to:
+- 540
+- 960
+crops_per_screen: 24
+cpu_repeats: 20
+n_elements:
+  train: 807124
+  dev: 111654
+  test: 186501

@@ -1,0 +1,145 @@
+# Models 4-6: candidate-container nesting head on Colab A100, notebooks/train_structure_models_pixels_metadata_fusion.ipynb.
+#   python scripts/train_structure_models.py --config configs/train_structure_models.yaml --stage build|embed|tune|gbdt|dev|test
+# Train on clean train, select on clean validation (dev), test once.
+# Every setting below was fixed before any result of these models.
+
+# ---- paths (Colab). work = local disk, wiped per session; out_dir / runs_root on Drive = kept between sessions
+data_dir: /content/work/structure/processed       # structure_colab_tables.tar (scripts/pack_colab_data_structure.py)
+img_dir: /content/work/screens              # clean-split screenshots, checked byte for byte (as for Model 3)
+cache_dir: /content/work/structure/cache
+emb_dir: /content/work/structure/emb
+out_dir: /content/drive/MyDrive/uistruct/structure
+runs_root: /content/drive/MyDrive/uistruct/runs
+model3_ckpt: /content/drive/MyDrive/uistruct/checkpoints/model3_lr2.pt   # selected Model 3 (best tune trial)
+model3_lr_backbone: 3.0e-4                  # checked against the checkpoint
+workers: null                               # null = all CPU cores (Colab A100 machine: 12)
+loader_workers: 3                           # batch collation processes per training process (3 trainings in parallel)
+seed: 0
+n_boot: 1000
+tables_tar: /content/drive/MyDrive/uistruct/structure_colab_tables.tar
+tables_sha256: 370ed96ed7ae66333e7923ad891a5542d21b56defe298ef3e473d4a57ba747cf   # data/upload/structure_colab_tables_manifest.json
+# laptop build of the full clean validation cache (4,860 screens); Colab's build must give the same fingerprint
+dev_fingerprint: 3cf1b3f8d3c5d68bdd834d98ef635740a8b6ea2ff7bb1501d9fc3aa0c17ad453
+
+# ---- candidates: identical to configs/structure_candidate_pool_ceiling.yaml (pool fixed by the candidate-pool check)
+pool:
+  singletons: true
+  all_leaves: true
+  xy_tols: [0.0, 0.002, 0.01, 0.03]
+  agglo_methods: [single, average, complete]
+min_iou: 0.5              # candidate label: Hungarian match to a true container at IoU >= 0.5 (raw truth)
+xy_tol: 0.002             # XY-cut rule baseline, as in the nesting baselines
+
+# ---- crops (data/nesting_crops.py): Model 3's crop (96 px, 8 px margin, 540x960 screenshot)
+crop_size: 96
+backbones: [model3, imagenet]   # model3 = Model 3's fine-tuned trunk, frozen; imagenet = ImageNet weights only
+backbone_tie: 0.002             # trial-0 validation AP within this -> imagenet (never saw training labels)
+
+# ---- learned systems
+models:                   # tuned (equal budget)
+  model4: {pool: M, use_meta: true,  use_crop: true}    # full fusion: metadata + pixels
+  model5: {pool: P, use_meta: false, use_crop: true}    # pixels only (leaf boxes + crops; no raw node, no raw box)
+  model6: {pool: M, use_meta: true,  use_crop: false}   # metadata only (Model 4 without pixels)
+extra_models:             # untuned ablation row, settings of the tuned model it is compared with
+  model5_box: {pool: P, use_meta: false, use_crop: false, settings_from: model5}   # Model 5 without crops
+gbdt_models:              # trees on the same candidates and inputs (crops as PCA components), tuned (equal budget)
+  gbdt_M_crop: {pool: M, use_meta: true,  use_crop: true,  pair: model4}
+  gbdt_P_crop: {pool: P, use_meta: false, use_crop: true,  pair: model5}
+  gbdt_M:      {pool: M, use_meta: true,  use_crop: false, pair: model6}
+gbdt_extra:
+  gbdt_P:      {pool: P, use_meta: false, use_crop: false, pair: model5_box, settings_from: gbdt_P_crop}
+pca_dim: 32               # crop PCA for the trees, fitted on training candidates only
+
+scorer:                   # trial 0 = the settings of the first CPU check
+  d: 128
+  heads: 4
+  layers: 3
+  ffn: 256
+  dropout: 0.1
+  lr: 0.001
+  weight_decay: 0.01
+  clip: 1.0
+  max_epochs: 30
+  patience: 4             # epochs without a better validation candidate AP
+  budget: 400000          # per batch: (#screens) x (max tokens)^2
+  type_weight: 0.2        # auxiliary leaf-type loss
+tune:                     # 6 trials per model; the same 5 random draws for every model
+  trials: 6
+  seed: 0
+  space:
+    lr: {log: [3.0e-4, 3.0e-3]}
+    d: [64, 128, 256]     # ffn = 2 d
+    layers: [2, 3, 4]
+    dropout: [0.0, 0.1, 0.2]
+    weight_decay: [0.01, 0.05, 0.1]
+    type_weight: [0.1, 0.2, 0.5]
+
+gbdt:                     # trial 0 = Model 1's trees settings
+  learning_rate: 0.1
+  max_leaf_nodes: 63
+  l2: 1.0
+  min_samples_leaf: 20
+  max_iter: 1000
+  max_cats: 250
+gbdt_tune:
+  trials: 6
+  seed: 0
+  space:
+    learning_rate: {log: [0.03, 0.3]}
+    max_leaf_nodes: [31, 63, 127, 255]
+    l2: [1.0, 3.0, 10.0]
+    min_samples_leaf: [20, 50, 100]
+
+thresholds: [0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95]
+
+pairs:                    # paired bootstrap on screens (container F1)
+  - [model4, model6]              # what pixels add when metadata is present
+  - [model4, model5]              # what metadata adds to pixels
+  - [model5, model5_box]          # what crops add in the pixels-only condition
+  - [model4, raw_chain_collapsed]
+  - [model6, raw_chain_collapsed]
+  - [model5, xycut]
+  - [model4, gbdt_M_crop]         # network vs trees, same inputs
+  - [model5, gbdt_P_crop]
+  - [model6, gbdt_M]
+  - [model5_box, gbdt_P]
+  - [ceiling_M, model4]           # distance to the pool ceiling
+  - [ceiling_P, model5]
+
+# ---- extra checks (seeds 1-2, trees refit, threshold sensitivity), run in the provenance Colab session; fixed before any of these results
+leftovers:
+  seeds: [1, 2]                       # Models 4-6 at their selected seed-0 settings, no re-tuning
+  refit_model: gbdt_P_crop            # hit the 1,000-round cap in 5 of 6 trials
+  refit_max_iter: 3000                # validation AP decides between the 1,000- and 3,000-round fits
+  pairs:                              # on per-screen means over the 3 seeds
+    - [model4_seedmean, model6_seedmean]
+    - [model4_seedmean, model5_seedmean]
+    - [model5_seedmean, model5_box]
+    - [model4_seedmean, gbdt_M_crop]
+    - [model5_seedmean, gbdt_P_crop]
+    - [model5_seedmean, gbdt_P_crop_refit]
+    - [model6_seedmean, gbdt_M]
+    - [model4_seedmean, raw_chain_collapsed]
+    - [model4, model4@retuned]        # sensitivity: thresholds re-tuned under the empty-screen rule
+    - [model5, model5@retuned]
+    - [model6, model6@retuned]
+
+# ---- laptop smoke check (--smoke): first 200 screens, tiny budgets, untrained ImageNet trunk. Not results.
+smoke:
+  data_dir: data/processed
+  img_dir: data/raw/rico/combined
+  cache_dir: data/processed/structure_smoke
+  emb_dir: data/processed/structure_smoke/emb
+  out_dir: data/processed/structure_smoke/out
+  runs_root: data/processed/structure_smoke/runs
+  limit: 200
+  workers: 6
+  loader_workers: 0
+  backbones: [model3, imagenet]
+  model3_ckpt: data/processed/structure_smoke/fake_model3.pt
+  pretrained: false
+  n_boot: 50
+  scorer: {max_epochs: 2, patience: 1}
+  tune: {trials: 2}
+  gbdt: {max_iter: 20}
+  gbdt_tune: {trials: 2}

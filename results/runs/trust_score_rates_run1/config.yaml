@@ -1,0 +1,113 @@
+data_dir: data/processed
+img_dir: data/raw/rico/combined
+cache_dir: data/processed/trust_score
+emb_dir: /content/work/fusion/emb
+out_dir: data/processed/trust_score/out
+runs_root: results/runs
+structure_dir: /content/drive/MyDrive/uistruct/structure
+model3_ckpt: /content/drive/MyDrive/uistruct/checkpoints/model3_lr2.pt
+model3_lr_backbone: 0.0003
+backbone: model3
+workers: 6
+loader_workers: 3
+seed: 0
+n_boot: 1000
+laptop:
+  data_dir: data/processed
+  img_dir: data/raw/rico/combined
+  cache_dir: data/processed/trust_score
+  out_dir: data/processed/trust_score/out
+  runs_root: results/runs
+  workers: 6
+smoke:
+  limit: 120
+  out_dir: data/processed/trust_score_smoke/out
+  cache_dir: data/processed/trust_score_smoke/cache
+  emb_dir: data/processed/trust_score_smoke/emb
+  runs_root: data/processed/trust_score_smoke/runs
+  rates_run: data/processed/trust_score_smoke/runs/trust_score_rates_smoke_run1/metrics.json
+pool:
+  singletons: true
+  all_leaves: true
+  xy_tols:
+  - 0.0
+  - 0.002
+  - 0.01
+  - 0.03
+  agglo_methods:
+  - single
+  - average
+  - complete
+min_iou: 0.5
+rates_run: results/runs/trust_score_rates_run1/metrics.json
+levels_train:
+- real
+- heavy
+- absent
+level_weights:
+  real: 0.5
+  heavy: 0.3
+  absent: 0.2
+levels_eval:
+- real
+- heavy
+- inject2
+- drop50
+- absent
+corruption_seed: 10
+fingerprint:
+  n_screens: 3000
+  pass_auroc: 0.6
+trust_weight: 1.0
+type_weight_from_structure: true
+variants:
+  fusion_full:
+    trust: true
+    levels:
+    - real
+    - heavy
+    - absent
+    seeds:
+    - 0
+    - 1
+    - 2
+  fusion_nohead:
+    trust: false
+    levels:
+    - real
+    - heavy
+    - absent
+    seeds:
+    - 0
+  fusion_realonly:
+    trust: true
+    levels:
+    - real
+    seeds:
+    - 0
+thresholds:
+- 0.05
+- 0.1
+- 0.15
+- 0.2
+- 0.25
+- 0.3
+- 0.35
+- 0.4
+- 0.45
+- 0.5
+- 0.55
+- 0.6
+- 0.65
+- 0.7
+- 0.75
+- 0.8
+- 0.85
+- 0.9
+- 0.95
+calibration_bins: 15
+is_smoke: false
+stage: rates
+split: train
+variant: null
+seed_arg: 0

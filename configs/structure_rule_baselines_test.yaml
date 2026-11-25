@@ -1,0 +1,7 @@
+# All non-learned nesting baselines (pixels-only and raw-metadata conditions), one table. Clean TEST: run once, after the dev run fixed the rules.
+# Run: python scripts/structure_rule_baselines.py --config configs/structure_rule_baselines_test.yaml
+data_dir: data/processed
+split: test
+contain_tol: 0.002          # same as structure_rule_baselines_true_elements.yaml
+n_boot: 1000
+seed: 0

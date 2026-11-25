@@ -1,0 +1,11 @@
+{
+  "split": "train",
+  "n_screens": 33107,
+  "n_boxes": 1508722,
+  "boxes_per_screen": 45.57108768538376,
+  "backbones": [
+    "model3",
+    "imagenet"
+  ],
+  "sec": 349.3
+}

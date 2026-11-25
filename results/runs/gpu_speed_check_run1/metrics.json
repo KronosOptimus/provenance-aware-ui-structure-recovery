@@ -1,0 +1,173 @@
+{
+  "device": "Tesla T4",
+  "torch": "2.11.0+cu130",
+  "torchvision": "0.26.0+cu130",
+  "gpu": [
+    {
+      "crops_per_s": 2377.8987442184343,
+      "peak_gpu_gb": 0.707362174987793,
+      "size": 64,
+      "amp": false,
+      "mode": "train"
+    },
+    {
+      "crops_per_s": 8407.067171138633,
+      "peak_gpu_gb": 0.2831892967224121,
+      "size": 64,
+      "amp": false,
+      "mode": "inference"
+    },
+    {
+      "crops_per_s": 7335.14199597117,
+      "peak_gpu_gb": 0.4066152572631836,
+      "size": 64,
+      "amp": true,
+      "mode": "train"
+    },
+    {
+      "crops_per_s": 23132.235463184945,
+      "peak_gpu_gb": 0.14748859405517578,
+      "size": 64,
+      "amp": true,
+      "mode": "inference"
+    },
+    {
+      "crops_per_s": 822.2946456851474,
+      "peak_gpu_gb": 2.2116804122924805,
+      "size": 128,
+      "amp": false,
+      "mode": "train"
+    },
+    {
+      "crops_per_s": 2309.395311170293,
+      "peak_gpu_gb": 0.6386580467224121,
+      "size": 128,
+      "amp": false,
+      "mode": "inference"
+    },
+    {
+      "crops_per_s": 2293.7117164264214,
+      "peak_gpu_gb": 1.1075506210327148,
+      "size": 128,
+      "amp": true,
+      "mode": "train"
+    },
+    {
+      "crops_per_s": 6886.544460672391,
+      "peak_gpu_gb": 0.4101839065551758,
+      "size": 128,
+      "amp": true,
+      "mode": "inference"
+    },
+    {
+      "crops_per_s": 352.9287356353392,
+      "peak_gpu_gb": 5.5547590255737305,
+      "size": 224,
+      "amp": false,
+      "mode": "train"
+    },
+    {
+      "crops_per_s": 1095.5245668765806,
+      "peak_gpu_gb": 1.829637050628662,
+      "size": 224,
+      "amp": false,
+      "mode": "inference"
+    },
+    {
+      "crops_per_s": 715.6387354095112,
+      "peak_gpu_gb": 3.2496328353881836,
+      "size": 224,
+      "amp": true,
+      "mode": "train"
+    },
+    {
+      "crops_per_s": 2321.17353923221,
+      "peak_gpu_gb": 1.1352815628051758,
+      "size": 224,
+      "amp": true,
+      "mode": "inference"
+    }
+  ],
+  "cpu": {
+    "jpeg_bytes": 535653,
+    "seconds_per_screen": 0.0459779051499936,
+    "crops_per_s_one_core": 521.9898540767541,
+    "cpu_cores": 2
+  },
+  "hours": [
+    {
+      "size": 64,
+      "amp": false,
+      "mode": "train",
+      "gpu_hours_per_pass": 0.09428539026576649
+    },
+    {
+      "size": 64,
+      "amp": false,
+      "mode": "inference",
+      "gpu_hours_per_pass": 0.03651950652879845
+    },
+    {
+      "size": 64,
+      "amp": true,
+      "mode": "train",
+      "gpu_hours_per_pass": 0.030565340280290915
+    },
+    {
+      "size": 64,
+      "amp": true,
+      "mode": "inference",
+      "gpu_hours_per_pass": 0.013272471868664456
+    },
+    {
+      "size": 128,
+      "amp": false,
+      "mode": "train",
+      "gpu_hours_per_pass": 0.27265301104363093
+    },
+    {
+      "size": 128,
+      "amp": false,
+      "mode": "inference",
+      "gpu_hours_per_pass": 0.1329447336103147
+    },
+    {
+      "size": 128,
+      "amp": true,
+      "mode": "train",
+      "gpu_hours_per_pass": 0.09774598503617277
+    },
+    {
+      "size": 128,
+      "amp": true,
+      "mode": "inference",
+      "gpu_hours_per_pass": 0.044582874066635636
+    },
+    {
+      "size": 224,
+      "amp": false,
+      "mode": "train",
+      "gpu_hours_per_pass": 0.6352588737426161
+    },
+    {
+      "size": 224,
+      "amp": false,
+      "mode": "inference",
+      "gpu_hours_per_pass": 0.28025108128773973
+    },
+    {
+      "size": 224,
+      "amp": true,
+      "mode": "train",
+      "gpu_hours_per_pass": 0.313288115941371
+    },
+    {
+      "size": 224,
+      "amp": true,
+      "mode": "inference",
+      "gpu_hours_per_pass": 0.13227013803802026
+    }
+  ],
+  "cpu_hours_decode_all_crops_all_cores": 0.29408803834652647,
+  "quick": false
+}

@@ -1,0 +1,64 @@
+{
+ "pages": {
+  "train": 3992,
+  "val": 500,
+  "test": 1000
+ },
+ "no_address": {
+  "train": 0,
+  "val": 0,
+  "test": 0
+ },
+ "websites": {
+  "train": 3535,
+  "val": 389,
+  "test": 791
+ },
+ "train_pages_on_test_websites": 12,
+ "train_pages_on_val_websites": 9,
+ "val_pages_on_test_websites": 1,
+ "shared_websites_train_test": [
+  "commento.io",
+  "dmarcdigests.com",
+  "flatpak.org",
+  "gitea.io",
+  "hrmdirect.com",
+  "kcgreendotcom.com",
+  "mn.gov",
+  "ospn.jp",
+  "patak.dev",
+  "pocketcasts.com",
+  "popularsearches.net"
+ ],
+ "train_kept": 3971,
+ "val_kept": 499,
+ "fetch": {
+  "test": {
+   "archive_pages": 10308,
+   "eligible": 8472,
+   "picked": 1000,
+   "with_address": 1000,
+   "files": 8000,
+   "bytes": 136306642,
+   "sec": 2.1
+  },
+  "val": {
+   "archive_pages": 5124,
+   "eligible": 4204,
+   "picked": 500,
+   "with_address": 500,
+   "files": 4000,
+   "bytes": 69136122,
+   "sec": 1.2
+  },
+  "train": {
+   "archive_pages": 4921,
+   "eligible": 3992,
+   "picked": 3992,
+   "with_address": 3992,
+   "files": 31936,
+   "bytes": 547234261,
+   "sec": 9.6
+  }
+ }
+}

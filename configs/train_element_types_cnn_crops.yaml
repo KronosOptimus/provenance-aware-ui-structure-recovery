@@ -1,0 +1,41 @@
+# Model 3 type head = Model 1 + pretrained CNN crop embedding (ResNet-18, ImageNet weights only).
+# Run on Colab from notebooks/train_element_type_classifier_with_resnet18_crops.ipynb:
+#   python scripts/train_element_types_cnn_crops.py --config configs/train_element_types_cnn_crops.yaml --stage features|frozen|cache|tune|dev|test
+# Choices: frozen features first, then fine-tuning = Model 3; headline
+# Model 1 + CNN (CNN replaces colour), extra rows Model 2 + CNN and box + CNN; crop = box + 8 px margin,
+# squashed to a square, size picked on dev by the frozen step; original screenshots (RICO archive, downloaded on Colab).
+seed: 0
+min_count: 5
+n_boot: 1000
+
+# ---- paths (Colab). work = local disk, wiped per session; drive = kept between sessions
+work: /content/work
+data_dir: /content/work/processed
+img_dir: /content/work/screens
+extra_dir: /content/work/extra          # Model 2 dev/test probabilities + CLAY label map (paired comparisons)
+drive: /content/drive/MyDrive/uistruct
+runs_root: /content/drive/MyDrive/uistruct/runs
+ckpt_dir: /content/drive/MyDrive/uistruct/checkpoints
+element_types_mlp_tune_run: results/runs/element_types_mlp_tune_run1   # Model 1's tuned MLP settings (in git)
+crop_workers: null        # null = all CPU cores of the machine (T4: 2; A100 machines have more)
+# Screenshots: Colab downloads the original RICO archive (same URL and md5 as scripts/download_data.sh) and keeps
+# the clean-split screenshots; screens_sha256 = their bytes on the laptop (scripts/pack_colab_data_element_types.py --tables)
+rico_url: https://storage.googleapis.com/crowdstf-rico-uiuc-4540/rico_dataset_v0.1/unique_uis.tar.gz
+rico_md5_b64: vc+Z1Nx/NqM5blfjBsdWlg==
+screens_sha256: d9c6226d459adbb3f267ebb5d8ec50a05374dc02d10115b93d6c5118fe13a95a
+
+# ---- features stage: frozen ImageNet ResNet-18 features at every pilot size, all clean elements, one pass
+pilot_sizes: [64, 96, 128]
+embed_batch: 2048
+
+# ---- frozen stage: MLP with Model 1's settings on [Model 1 inputs + frozen features]
+# Size rule (fixed before seeing results): best dev macro-F1 of model1_cnn frozen; any size within
+# size_tie of the best counts as tied and the smallest tied size wins (cheaper to fine-tune).
+size_tie: 0.002
+frozen_fixed: {batch: 4096, max_epochs: 30, patience: 4, chunk: 1, amp: true}
+
+# ---- fine-tuning (tune / dev stages): backbone and MLP together; MLP keeps Model 1's settings
+crop_size: null            # null = the size chosen by the frozen stage (newest finished frozen run)
+ft_fixed: {batch: 512, max_epochs: 8, patience: 2, chunk: 32, amp: true}
+lr_backbone_trials: [3.0e-5, 1.0e-4, 3.0e-4, 1.0e-3]   # the only tuned value; seed 0; selection by dev macro-F1. 1e-3 added after the first tune run (best was at the edge, 3e-4)
+extra_seeds: [1, 2]

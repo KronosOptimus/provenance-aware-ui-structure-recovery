@@ -1,0 +1,63 @@
+{
+  "split": "dev",
+  "n_screens": 4860,
+  "levels": [
+    "real",
+    "heavy",
+    "inject2",
+    "drop50",
+    "absent"
+  ],
+  "sec": 74.5,
+  "fingerprint": "5f45b43d3a0df20a6540797da0e2a4fbb157de8547e788aa9c0798141ba1070c",
+  "real": {
+    "elements": 70796,
+    "valid": 63458,
+    "clay_invalid": 7338,
+    "injected": 0,
+    "masked": 0,
+    "mean_candidates": 51.590123456790124,
+    "mean_positives": 7.3045268058776855,
+    "cand_trust_labelled": 39814
+  },
+  "heavy": {
+    "elements": 77703,
+    "valid": 63458,
+    "clay_invalid": 7338,
+    "injected": 6907,
+    "masked": 19398,
+    "mean_candidates": 53.525925925925925,
+    "mean_positives": 7.296707630157471,
+    "cand_trust_labelled": 29879
+  },
+  "inject2": {
+    "elements": 84475,
+    "valid": 63458,
+    "clay_invalid": 7338,
+    "injected": 13679,
+    "masked": 0,
+    "mean_candidates": 63.19876543209877,
+    "mean_positives": 7.3045268058776855,
+    "cand_trust_labelled": 39814
+  },
+  "drop50": {
+    "elements": 70796,
+    "valid": 63458,
+    "clay_invalid": 7338,
+    "injected": 0,
+    "masked": 35012,
+    "mean_candidates": 44.306172839506175,
+    "mean_positives": 7.2890944480896,
+    "cand_trust_labelled": 19899
+  },
+  "absent": {
+    "elements": 63458,
+    "valid": 63458,
+    "clay_invalid": 0,
+    "injected": 0,
+    "masked": 63458,
+    "mean_candidates": 34.44526748971193,
+    "mean_positives": 7.242798328399658,
+    "cand_trust_labelled": 0
+  }
+}

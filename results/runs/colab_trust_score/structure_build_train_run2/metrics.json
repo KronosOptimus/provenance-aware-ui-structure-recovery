@@ -1,0 +1,13 @@
+{
+  "split": "train",
+  "n_screens": 33107,
+  "sec": 108.7,
+  "fingerprint": "eeb4ab9c8a93e5ceb1aee3328ae51a4c78fbd32fcc3c625992738a0ca61bed84",
+  "P_mean_candidates": 36.84951822877337,
+  "P_mean_positives": 7.885492324829102,
+  "P_max_candidates": 1133,
+  "M_mean_candidates": 47.69444528347479,
+  "M_mean_positives": 7.955145359039307,
+  "M_max_candidates": 1138,
+  "mean_leaves": 13.812033708883318
+}

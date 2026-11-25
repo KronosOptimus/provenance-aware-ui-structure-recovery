@@ -1,0 +1,7 @@
+# Non-learned nesting baselines on the true elements (oracle boxes, valid elements only).
+# Run: python scripts/structure_rule_baselines_true_elements.py --config configs/structure_rule_baselines_true_elements.yaml
+data_dir: data/processed
+splits: [dev, test]
+contain_tol: 0.002      # a box "contains" another if it does so within 0.2% of the frame (~3 px at 1440 wide)
+n_boot: 1000
+seed: 0

@@ -1,0 +1,242 @@
+data_dir: /content/work/structure/processed
+img_dir: /content/work/screens
+cache_dir: /content/work/fusion/cache
+emb_dir: /content/work/fusion/emb
+out_dir: /content/drive/MyDrive/uistruct/trust_score
+runs_root: /content/drive/MyDrive/uistruct/runs
+structure_dir: /content/drive/MyDrive/uistruct/structure
+model3_ckpt: /content/drive/MyDrive/uistruct/checkpoints/model3_lr2.pt
+model3_lr_backbone: 0.0003
+backbone: model3
+workers: 12
+loader_workers: 3
+dev_fingerprint: 5f45b43d3a0df20a6540797da0e2a4fbb157de8547e788aa9c0798141ba1070c
+baselines_sha256: 8158bb9583c37c644575e9c21115025fec324036a5e8f7061bf89fcdca303338
+seed: 0
+n_boot: 1000
+laptop:
+  data_dir: data/processed
+  img_dir: data/raw/rico/combined
+  cache_dir: data/processed/trust_score
+  out_dir: data/processed/trust_score/out
+  runs_root: results/runs
+  workers: 6
+smoke:
+  limit: 120
+  untrained_trunk: true
+  hp_override:
+    max_epochs: 2
+    patience: 1
+  loader_workers: 0
+  n_boot: 30
+  element_types_cnn_ckpt_dir: data/processed/trust_score_smoke/no_ckpts
+  baselines:
+    names:
+    - model2
+    - gbdt2
+    - box_colour
+    - model3
+    - boxcnn
+    out: data/processed/trust_score_smoke/trust_score_baselines.npz
+    file: data/upload/trust_score_baselines.npz
+    element_types_colour_dev: results/runs/element_types_colour_dev_run1/dev_probs.npz
+    element_types_colour_test: results/runs/element_types_colour_test_run1/test_probs.npz
+    element_types_cnn_test: data/upload/element_types_cnn_test_probs.npz
+    element_types_colour_keys:
+      model2: model2_s0
+      gbdt2: gbdt2
+      box_colour: box_colour_s0
+    element_types_cnn_keys:
+      model3: model3_s0
+      boxcnn: boxcnn_s0
+    element_types_cnn_dev_files:
+      model3: model3_lr2_dev_prob.npy
+      boxcnn: boxcnn_s0_dev_prob.npy
+  variants:
+    fusion_full:
+      trust: true
+      weights:
+        real: 0.5
+        heavy: 0.3
+        absent: 0.2
+      seeds:
+      - 0
+      - 1
+    fusion_nohead:
+      trust: false
+      weights:
+        real: 0.5
+        heavy: 0.3
+        absent: 0.2
+      seeds:
+      - 0
+    fusion_realonly:
+      trust: true
+      weights:
+        real: 1.0
+      seeds:
+      - 0
+    fusion_noinject:
+      trust: true
+      weights:
+        real: 0.5
+        heavy_noinject: 0.3
+        absent: 0.2
+      seeds:
+      - 0
+  out_dir: data/processed/trust_score_smoke/out
+  cache_dir: data/processed/trust_score_smoke/cache
+  emb_dir: data/processed/trust_score_smoke/emb
+  runs_root: data/processed/trust_score_smoke/runs
+  rates_run: data/processed/trust_score_smoke/runs/trust_score_rates_smoke_run1/metrics.json
+pool:
+  singletons: true
+  all_leaves: true
+  xy_tols:
+  - 0.0
+  - 0.002
+  - 0.01
+  - 0.03
+  agglo_methods:
+  - single
+  - average
+  - complete
+min_iou: 0.5
+rates_run: results/runs/trust_score_rates_run1/metrics.json
+levels_train:
+- real
+- heavy
+- heavy_noinject
+- absent
+levels_eval:
+- real
+- heavy
+- inject2
+- drop50
+- absent
+corruption_seed: 10
+fingerprint:
+  n_screens: 3000
+  pass_auroc: 0.6
+model4_tune_metrics: results/runs/structure_tune_model4_run1/metrics.json
+model4_trial: t2_model3
+trust_weight: 1.0
+variants:
+  fusion_full:
+    trust: true
+    weights:
+      real: 0.5
+      heavy: 0.3
+      absent: 0.2
+    seeds:
+    - 0
+    - 1
+    - 2
+  fusion_nohead:
+    trust: false
+    weights:
+      real: 0.5
+      heavy: 0.3
+      absent: 0.2
+    seeds:
+    - 0
+  fusion_realonly:
+    trust: true
+    weights:
+      real: 1.0
+    seeds:
+    - 0
+  fusion_noinject:
+    trust: true
+    weights:
+      real: 0.5
+      heavy_noinject: 0.3
+      absent: 0.2
+    seeds:
+    - 0
+thresholds:
+- 0.05
+- 0.1
+- 0.15
+- 0.2
+- 0.25
+- 0.3
+- 0.35
+- 0.4
+- 0.45
+- 0.5
+- 0.55
+- 0.6
+- 0.65
+- 0.7
+- 0.75
+- 0.8
+- 0.85
+- 0.9
+- 0.95
+calibration_bins: 15
+baseline_model: fusion_full_s0
+element_types_cnn_ckpt_dir: /content/drive/MyDrive/uistruct/checkpoints
+baselines:
+  names:
+  - model2
+  - gbdt2
+  - box_colour
+  - model3
+  - boxcnn
+  out: data/upload/trust_score_baselines.npz
+  file: /content/drive/MyDrive/uistruct/trust_score_baselines.npz
+  element_types_colour_dev: results/runs/element_types_colour_dev_run1/dev_probs.npz
+  element_types_colour_test: results/runs/element_types_colour_test_run1/test_probs.npz
+  element_types_cnn_test: data/upload/element_types_cnn_test_probs.npz
+  element_types_colour_keys:
+    model2: model2_s0
+    gbdt2: gbdt2
+    box_colour: box_colour_s0
+  element_types_cnn_keys:
+    model3: model3_s0
+    boxcnn: boxcnn_s0
+  element_types_cnn_dev_files:
+    model3: model3_lr2_dev_prob.npy
+    boxcnn: boxcnn_s0_dev_prob.npy
+pairs:
+- - fusion_full_s0+trust
+  - fusion_full_s0
+- - fusion_full_s0+trust
+  - fusion_full_s0+typehead
+- - fusion_full_s0+trust
+  - fusion_full_s0+gbdt2
+- - fusion_full_s0+trust
+  - fusion_full_s0+model2
+- - fusion_full_s0+trust
+  - fusion_full_s0+box_colour
+- - fusion_full_s0+trust
+  - fusion_full_s0+model3
+- - fusion_full_s0+oracle
+  - fusion_full_s0+trust
+- - fusion_full_s0
+  - fusion_nohead_s0
+- - fusion_full_s0+trust
+  - fusion_realonly_s0+trust
+- - fusion_full_s0+trust
+  - fusion_noinject_s0+trust
+trust_pairs:
+- - fusion_full_s0:trust
+  - gbdt2
+- - fusion_full_s0:trust
+  - model2
+- - fusion_full_s0:trust
+  - box_colour
+- - fusion_full_s0:trust
+  - model3
+- - fusion_full_s0:trust
+  - fusion_full_s0:typehead
+- - fusion_full_s0:trust
+  - fusion_noinject_s0:trust
+- - fusion_full_s0:trust
+  - fusion_realonly_s0:trust
+is_smoke: false
+stage: embed
+split: train
+variant: null
+seed_arg: 0

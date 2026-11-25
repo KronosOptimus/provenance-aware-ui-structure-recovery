@@ -1,0 +1,6 @@
+# Data analysis + report figures.  Run: python scripts/explore_data.py --config configs/explore_data.yaml
+data_dir: data/processed
+rico_dir: data/raw/rico/combined
+fig_dir: results/figures
+results: results/explore_data.json
+example_index: 0        # which qualifying screen to draw in data_example_screen.png (sorted by id, deterministic)

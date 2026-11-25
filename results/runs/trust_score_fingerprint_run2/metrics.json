@@ -1,0 +1,19 @@
+{
+  "n_real_invalid": 3512,
+  "n_fake": 3266,
+  "n_screens": 2074,
+  "auroc_box": 0.6307053492170674,
+  "auroc_meta": 0.741418740739697,
+  "auroc_colour": 0.8032214744732669,
+  "auroc_all": 0.8593875491669927,
+  "pass": false,
+  "largest_mean_differences": {
+    "m0": 0.564,
+    "dom_frac": 0.52,
+    "col_entropy": 0.457,
+    "mean_b": 0.43,
+    "lum_mean": 0.417,
+    "mean_g": 0.411
+  },
+  "sec": 125.4
+}

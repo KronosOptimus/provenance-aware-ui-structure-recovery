@@ -1,0 +1,62 @@
+{
+  "n_screens": 200,
+  "seed": 0,
+  "levels": [
+    "real",
+    "heavy",
+    "inject2",
+    "drop50",
+    "absent"
+  ],
+  "minutes": 2.1,
+  "sec_per_run": {
+    "median": 0.1,
+    "max": 0.47
+  },
+  "note": "f1 = container F1 (raw truth, empty-screen rule) rounded to 3 decimals; a difference of 0.001 is rounding",
+  "absent": {
+    "same_elements": 1.0,
+    "same_removed": 1.0,
+    "same_pred_containers": 1.0,
+    "f1_within_0.001": 1.0,
+    "f1_max_diff": 0.0,
+    "f1_mean_demo": 0.71667,
+    "f1_mean_test": 0.71667
+  },
+  "drop50": {
+    "same_elements": 1.0,
+    "same_removed": 0.995,
+    "same_pred_containers": 1.0,
+    "f1_within_0.001": 0.995,
+    "f1_max_diff": 0.013999999999999901,
+    "f1_mean_demo": 0.7990050000000001,
+    "f1_mean_test": 0.7989350000000001
+  },
+  "heavy": {
+    "same_elements": 1.0,
+    "same_removed": 1.0,
+    "same_pred_containers": 1.0,
+    "f1_within_0.001": 1.0,
+    "f1_max_diff": 0.0,
+    "f1_mean_demo": 0.8483350000000001,
+    "f1_mean_test": 0.8483350000000001
+  },
+  "inject2": {
+    "same_elements": 1.0,
+    "same_removed": 1.0,
+    "same_pred_containers": 1.0,
+    "f1_within_0.001": 1.0,
+    "f1_max_diff": 0.0,
+    "f1_mean_demo": 0.8740100000000001,
+    "f1_mean_test": 0.8740100000000001
+  },
+  "real": {
+    "same_elements": 1.0,
+    "same_removed": 1.0,
+    "same_pred_containers": 1.0,
+    "f1_within_0.001": 1.0,
+    "f1_max_diff": 0.0,
+    "f1_mean_demo": 0.89905,
+    "f1_mean_test": 0.89905
+  }
+}

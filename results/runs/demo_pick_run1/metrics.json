@@ -1,0 +1,210 @@
+{
+  "rule": [
+    "Rule (fixed before looking): test screens in portrait with 8-30 elements at the real level",
+    "    and at least one true container; system fusion_full_s0 + trust, raw truth.",
+    "      showcase (3): real-level container F1 >= 0.95, at least one unfaithful element removed, no valid element",
+    "                    removed; ranked by heavy-level container F1 (high first), then fewer unfaithful elements kept",
+    "                    at the real level, then screen id",
+    "      typical (1):  real-level container F1 closest to the test mean of the system; ties by screen id",
+    "      failure (1):  lowest real-level container F1; ties by screen id",
+    "    A screen whose screenshot is blank or unreadable is skipped by eye and the next in rank taken (logged)."
+  ],
+  "eligible": 4805,
+  "test_mean_real": 0.8812944320964183,
+  "showcase_ranked": [
+    {
+      "screen_id": 218,
+      "n_elements": 22,
+      "container_f1": 1.0,
+      "n_removed": 1,
+      "removed_valid": 0,
+      "kept_unfaithful": 0,
+      "n_true_containers": 19,
+      "heavy_f1": 1.0
+    },
+    {
+      "screen_id": 866,
+      "n_elements": 22,
+      "container_f1": 1.0,
+      "n_removed": 13,
+      "removed_valid": 0,
+      "kept_unfaithful": 0,
+      "n_true_containers": 8,
+      "heavy_f1": 1.0
+    },
+    {
+      "screen_id": 868,
+      "n_elements": 17,
+      "container_f1": 1.0,
+      "n_removed": 8,
+      "removed_valid": 0,
+      "kept_unfaithful": 0,
+      "n_true_containers": 8,
+      "heavy_f1": 1.0
+    },
+    {
+      "screen_id": 2362,
+      "n_elements": 18,
+      "container_f1": 1.0,
+      "n_removed": 12,
+      "removed_valid": 0,
+      "kept_unfaithful": 0,
+      "n_true_containers": 3,
+      "heavy_f1": 1.0
+    },
+    {
+      "screen_id": 3030,
+      "n_elements": 8,
+      "container_f1": 1.0,
+      "n_removed": 1,
+      "removed_valid": 0,
+      "kept_unfaithful": 0,
+      "n_true_containers": 2,
+      "heavy_f1": 1.0
+    },
+    {
+      "screen_id": 3273,
+      "n_elements": 28,
+      "container_f1": 1.0,
+      "n_removed": 26,
+      "removed_valid": 0,
+      "kept_unfaithful": 0,
+      "n_true_containers": 1,
+      "heavy_f1": 1.0
+    },
+    {
+      "screen_id": 3519,
+      "n_elements": 12,
+      "container_f1": 1.0,
+      "n_removed": 5,
+      "removed_valid": 0,
+      "kept_unfaithful": 0,
+      "n_true_containers": 6,
+      "heavy_f1": 1.0
+    },
+    {
+      "screen_id": 4012,
+      "n_elements": 9,
+      "container_f1": 1.0,
+      "n_removed": 1,
+      "removed_valid": 0,
+      "kept_unfaithful": 0,
+      "n_true_containers": 2,
+      "heavy_f1": 1.0
+    },
+    {
+      "screen_id": 5043,
+      "n_elements": 12,
+      "container_f1": 1.0,
+      "n_removed": 1,
+      "removed_valid": 0,
+      "kept_unfaithful": 0,
+      "n_true_containers": 2,
+      "heavy_f1": 1.0
+    },
+    {
+      "screen_id": 5045,
+      "n_elements": 14,
+      "container_f1": 1.0,
+      "n_removed": 1,
+      "removed_valid": 0,
+      "kept_unfaithful": 0,
+      "n_true_containers": 11,
+      "heavy_f1": 1.0
+    }
+  ],
+  "typical_ranked": [
+    {
+      "screen_id": 8454,
+      "n_elements": 21,
+      "container_f1": 0.8812865497076023,
+      "n_removed": 0,
+      "removed_valid": 0,
+      "kept_unfaithful": 1,
+      "n_true_containers": 19
+    },
+    {
+      "screen_id": 36141,
+      "n_elements": 28,
+      "container_f1": 0.8815873015873017,
+      "n_removed": 6,
+      "removed_valid": 0,
+      "kept_unfaithful": 3,
+      "n_true_containers": 14
+    },
+    {
+      "screen_id": 8122,
+      "n_elements": 25,
+      "container_f1": 0.8823529411764706,
+      "n_removed": 0,
+      "removed_valid": 0,
+      "kept_unfaithful": 0,
+      "n_true_containers": 19
+    },
+    {
+      "screen_id": 18005,
+      "n_elements": 19,
+      "container_f1": 0.8823529411764706,
+      "n_removed": 0,
+      "removed_valid": 0,
+      "kept_unfaithful": 0,
+      "n_true_containers": 19
+    },
+    {
+      "screen_id": 56221,
+      "n_elements": 9,
+      "container_f1": 0.8823529411764706,
+      "n_removed": 0,
+      "removed_valid": 0,
+      "kept_unfaithful": 1,
+      "n_true_containers": 9
+    }
+  ],
+  "failure_ranked": [
+    {
+      "screen_id": 3680,
+      "n_elements": 18,
+      "container_f1": 0.0,
+      "n_removed": 6,
+      "removed_valid": 0,
+      "kept_unfaithful": 2,
+      "n_true_containers": 1
+    },
+    {
+      "screen_id": 3681,
+      "n_elements": 25,
+      "container_f1": 0.0,
+      "n_removed": 14,
+      "removed_valid": 0,
+      "kept_unfaithful": 0,
+      "n_true_containers": 1
+    },
+    {
+      "screen_id": 5238,
+      "n_elements": 8,
+      "container_f1": 0.0,
+      "n_removed": 6,
+      "removed_valid": 0,
+      "kept_unfaithful": 0,
+      "n_true_containers": 1
+    },
+    {
+      "screen_id": 6842,
+      "n_elements": 25,
+      "container_f1": 0.0,
+      "n_removed": 20,
+      "removed_valid": 0,
+      "kept_unfaithful": 1,
+      "n_true_containers": 1
+    },
+    {
+      "screen_id": 7308,
+      "n_elements": 9,
+      "container_f1": 0.0,
+      "n_removed": 1,
+      "removed_valid": 0,
+      "kept_unfaithful": 1,
+      "n_true_containers": 1
+    }
+  ]
+}

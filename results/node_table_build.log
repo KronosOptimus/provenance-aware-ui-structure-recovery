@@ -1,0 +1,21 @@
+1/149 chunks, 19s
+21/149 chunks, 33s
+41/149 chunks, 48s
+61/149 chunks, 76s
+81/149 chunks, 91s
+101/149 chunks, 118s
+121/149 chunks, 133s
+141/149 chunks, 159s
+{
+  "clay_rows": true,
+  "screens": true,
+  "splits": true,
+  "every_label_matched": true,
+  "labelled_rows_equal_unique_clay_nodes": true,
+  "join_with_duplicates_reproduced": true,
+  "screens_with_background": true,
+  "labelled_per_screen": true,
+  "images_9x16_except_flagged_landscape": true
+} 
+all pass: True 
+168s

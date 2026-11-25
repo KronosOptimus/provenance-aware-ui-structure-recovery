@@ -1,0 +1,147 @@
+{
+  "official_overlap": {
+    "app": {
+      "train-dev": {
+        "shared_app": 40,
+        "train_screens": 2873,
+        "dev_screens": 501
+      },
+      "train-test": {
+        "shared_app": 63,
+        "train_screens": 3077,
+        "test_screens": 930
+      },
+      "dev-test": {
+        "shared_app": 16,
+        "dev_screens": 421,
+        "test_screens": 742
+      }
+    },
+    "company": {
+      "train-dev": {
+        "shared_company": 206,
+        "train_screens": 7685,
+        "dev_screens": 2110
+      },
+      "train-test": {
+        "shared_company": 290,
+        "train_screens": 8821,
+        "test_screens": 3024
+      },
+      "dev-test": {
+        "shared_company": 95,
+        "dev_screens": 1278,
+        "test_screens": 1834
+      }
+    }
+  },
+  "clean_overlap": {
+    "app": {
+      "train-dev": {
+        "shared_app": 0,
+        "train_screens": 0,
+        "dev_screens": 0
+      },
+      "train-test": {
+        "shared_app": 0,
+        "train_screens": 0,
+        "test_screens": 0
+      },
+      "dev-test": {
+        "shared_app": 0,
+        "dev_screens": 0,
+        "test_screens": 0
+      }
+    },
+    "company": {
+      "train-dev": {
+        "shared_company": 0,
+        "train_screens": 0,
+        "dev_screens": 0
+      },
+      "train-test": {
+        "shared_company": 0,
+        "train_screens": 0,
+        "test_screens": 0
+      },
+      "dev-test": {
+        "shared_company": 0,
+        "dev_screens": 0,
+        "test_screens": 0
+      }
+    }
+  },
+  "screens": {
+    "official": {
+      "train": 44629,
+      "test": 8719,
+      "dev": 6207
+    },
+    "clean": {
+      "train": 33440,
+      "dropped": 12467,
+      "test": 8719,
+      "dev": 4929
+    }
+  },
+  "layout_duplicates_train_vs_eval_after_cleaning": 0,
+  "layout_duplicates_train_vs_eval_official": 2214,
+  "elements": {
+    "elements": 1368381,
+    "valid": 1216674,
+    "invalid": 151707,
+    "valid_parent_vroot": 129395,
+    "invalid_have_no_parent": true,
+    "per_split_elements": {
+      "train": 807124,
+      "dropped": 263102,
+      "test": 186501,
+      "dev": 111654
+    },
+    "per_split_valid": {
+      "train": 720646,
+      "dropped": 233791,
+      "test": 163279,
+      "dev": 98958
+    },
+    "train_label_counts": {
+      "0": 86478,
+      "1": 33867,
+      "2": 128053,
+      "3": 60254,
+      "4": 211405,
+      "5": 8389,
+      "6": 6789,
+      "7": 264,
+      "8": 3446,
+      "9": 1824,
+      "10": 2150,
+      "11": 895,
+      "12": 1021,
+      "13": 2368,
+      "14": 736,
+      "15": 276,
+      "16": 2878,
+      "17": 3252,
+      "18": 20130,
+      "19": 73351,
+      "20": 2583,
+      "21": 156147,
+      "22": 211,
+      "23": 357
+    },
+    "reattached_valid": 20418,
+    "reattached_screens": 6472,
+    "valid_per_screen": {
+      "mean": 20.68,
+      "median": 16.0,
+      "max": 276
+    }
+  },
+  "config": {
+    "data_dir": "data/processed",
+    "drop_dev_test_overlap": true,
+    "results": "results/splits_and_targets.json"
+  },
+  "seconds": 98.9
+}

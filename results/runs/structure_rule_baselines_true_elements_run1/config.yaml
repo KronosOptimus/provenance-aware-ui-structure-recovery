@@ -1,0 +1,7 @@
+data_dir: data/processed
+splits:
+- dev
+- test
+contain_tol: 0.002
+n_boot: 1000
+seed: 0

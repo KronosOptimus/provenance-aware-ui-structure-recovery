@@ -1,0 +1,34 @@
+  500/4860 screens
+  1000/4860 screens
+  1500/4860 screens
+  2000/4860 screens
+  2500/4860 screens
+  3000/4860 screens
+  3500/4860 screens
+  4000/4860 screens
+  4500/4860 screens
+system|truth                              contF1     CM   prec edgeF1  pred/true   pool  cov50  cov90
+ceiling_M_all|raw                          1.000  1.000  1.000  1.000  7.3/ 7.3   45.4  1.000  1.000
+ceiling_M_raw|raw                          1.000  1.000  1.000  1.000  7.3/ 7.3   19.8  1.000  1.000
+ceiling_P_agglo|raw                        0.880  0.862  0.902  0.850  6.8/ 7.3   31.8  0.993  0.727
+ceiling_P_all|raw                          0.934  0.916  0.957  0.889  6.9/ 7.3   34.4  0.999  0.874
+ceiling_P_all_no_single|raw                0.851  0.801  0.932  0.821  5.9/ 7.3   21.4  0.960  0.746
+ceiling_P_xy|raw                           0.811  0.766  0.880  0.732  6.2/ 7.3   19.2  0.965  0.644
+raw_chain_collapsed|raw                    0.776  0.847  0.794  0.685  6.9/ 7.3    nan    nan    nan
+xycut|raw                                  0.493  0.411  0.853  0.398  3.9/ 7.3    nan    nan    nan
+ceiling_M_all|smoothed                     1.000  1.000  1.000  1.000  5.8/ 5.8   45.4  1.000  1.000
+ceiling_M_raw|smoothed                     1.000  1.000  1.000  1.000  5.8/ 5.8   19.8  1.000  1.000
+ceiling_P_agglo|smoothed                   0.878  0.863  0.899  0.866  5.4/ 5.8   31.8  0.992  0.679
+ceiling_P_all|smoothed                     0.943  0.928  0.963  0.910  5.5/ 5.8   34.4  0.999  0.850
+ceiling_P_all_no_single|smoothed           0.941  0.922  0.968  0.904  5.4/ 5.8   21.4  0.994  0.850
+ceiling_P_xy|smoothed                      0.801  0.757  0.872  0.745  4.9/ 5.8   19.2  0.961  0.593
+raw_chain_collapsed|smoothed               0.844  1.000  0.772  0.770  6.9/ 5.8    nan    nan    nan
+xycut|smoothed                             0.554  0.486  0.848  0.456  3.9/ 5.8    nan    nan    nan
+ceiling_P_all_minus_xycut|raw                           diff=0.438 [0.429,0.446] p=0.000
+ceiling_M_all_minus_raw_chain_collapsed|raw             diff=0.200 [0.195,0.205] p=0.000
+ceiling_M_all_minus_ceiling_P_all|raw                   diff=0.066 [0.064,0.069] p=0.000
+ceiling_P_all_minus_xycut|smoothed                      diff=0.384 [0.375,0.393] p=0.000
+ceiling_M_all_minus_raw_chain_collapsed|smoothed        diff=0.120 [0.117,0.124] p=0.000
+ceiling_M_all_minus_ceiling_P_all|smoothed              diff=0.057 [0.055,0.059] p=0.000
+gate: {'pool': 'P_all', 'ceiling_container_f1': 0.9337201304993237, 'xycut_container_f1': 0.49273714208017727, 'margin': 0.15, 'needed': 0.6427371420801773, 'decision': 'GO'}
+run dir: results\runs\structure_candidate_pool_run1

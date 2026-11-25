@@ -1,0 +1,122 @@
+web_test_config: configs/evaluate_android_system_on_web_pages.yaml
+fusion_config: configs/train_trust_score_on_corrupted_metadata.yaml
+raw_dir: /content/work/webui
+zip_dir: /content/work/webui_zip
+cache_dir: /content/work/web
+out_dir: /content/drive/MyDrive/uistruct/web_train
+runs_root: /content/drive/MyDrive/uistruct/runs
+android_models_dir: /content/drive/MyDrive/uistruct/trust_score/models
+download: true
+workers: 12
+fetch_threads: 4
+seed: 0
+n_boot: 1000
+test_pages: results/runs/web_test_run1/pages.csv
+test_fingerprint: 0ff6f299116cbea5a123a1e5eda10b1cbc3d6c94892c245769eabd17d2c29561
+n_val_pages: 500
+n_train_pages: null
+train_corruption_seed: 14
+levels_train_web:
+- real
+- heavy_noinject
+- absent
+level_weights:
+- 0.5
+- 0.3
+- 0.2
+regimes:
+  web:
+    android: false
+    trust: false
+    seeds:
+    - 0
+    - 1
+    - 2
+    select_levels:
+    - real
+    - drop50
+    - absent
+  joint:
+    android: true
+    trust: true
+    seeds:
+    - 0
+    - 1
+    - 2
+    select_levels:
+    - real
+android_models:
+- fusion_full_s0
+- fusion_full_s1
+- fusion_full_s2
+android_test_run: results/runs/colab_trust_score/trust_score_test_run1/metrics.json
+pairs_web:
+- - web
+  - fusion_full
+- - joint
+  - fusion_full
+- - joint+trust
+  - fusion_full+trust
+- - joint
+  - web
+- - web
+  - xycut
+- - joint
+  - xycut
+- - joint+trust
+  - joint
+- - fusion_full
+  - fusion_full@android_thr
+- - web
+  - raw_collapsed
+- - joint+trust
+  - raw_collapsed
+pairs_android:
+- - joint
+  - fusion_full
+- - joint+trust
+  - fusion_full+trust
+- - web
+  - fusion_full
+laptop:
+  raw_dir: data/raw/webui_train
+  zip_dir: data/processed/webui_zip
+  cache_dir: data/processed/web_train
+  out_dir: data/processed/web_train/out
+  runs_root: results/runs
+  android_models_dir: data/processed/trust_score/out/models
+  download: false
+  workers: 6
+  fetch_threads: 16
+smoke:
+  raw_dir: data/processed/web_smoke/raw
+  cache_dir: data/processed/web_smoke/cache
+  out_dir: data/processed/web_smoke/out
+  runs_root: data/processed/web_smoke/runs
+  android_models_dir: data/processed/trust_score_smoke/out/models
+  android_models:
+  - fusion_full_s0
+  - fusion_full_s1
+  n_train_pages: 10
+  n_val_pages: 6
+  n_test_pages: 6
+  n_boot: 30
+  workers: 4
+  regimes:
+    web:
+      android: false
+      trust: false
+      seeds:
+      - 0
+      select_levels:
+      - real
+      - drop50
+      - absent
+    joint:
+      android: true
+      trust: true
+      seeds:
+      - 0
+      select_levels:
+      - real
+is_smoke: false

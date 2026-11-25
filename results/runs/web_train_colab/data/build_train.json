@@ -1,0 +1,18 @@
+{
+ "split": "train",
+ "pages": 3971,
+ "page_views": 7942,
+ "kept": 7474,
+ "fingerprint": "3b03e5acf600e4beae760cbbac11997110c7d2a1d0bd1a21597c254ad1fcd9a3",
+ "by_device": {
+  "desktop": {
+   "kept": 3822,
+   "elements_median": 24.0
+  },
+  "phone": {
+   "kept": 3652,
+   "elements_median": 16.0
+  }
+ },
+ "sec": 86.8
+}

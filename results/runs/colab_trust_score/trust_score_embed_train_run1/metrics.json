@@ -1,0 +1,7 @@
+{
+  "split": "train",
+  "n_screens": 33107,
+  "n_boxes": 1980402,
+  "boxes_per_screen": 59.818225752861935,
+  "sec": 434.6
+}

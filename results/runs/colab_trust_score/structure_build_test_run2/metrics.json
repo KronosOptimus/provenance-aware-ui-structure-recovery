@@ -1,0 +1,13 @@
+{
+  "split": "test",
+  "n_screens": 8551,
+  "sec": 35.0,
+  "fingerprint": "1d31c1a34680c1172bdf893facffbc515b3df196f03f8495ec6520d924cd2957",
+  "P_mean_candidates": 31.90515729154485,
+  "P_mean_positives": 6.889837265014648,
+  "P_max_candidates": 793,
+  "M_mean_candidates": 42.36989825751374,
+  "M_mean_positives": 6.942930698394775,
+  "M_max_candidates": 802,
+  "mean_leaves": 12.151795111682844
+}

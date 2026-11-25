@@ -1,0 +1,41 @@
+{
+  "task": "raw_data_check",
+  "python": "3.10.5",
+  "platform": "Windows-10-10.0.26300-SP0",
+  "clay_commit": "eca50f8b351a10245d16d1efe72c10d266d7f528",
+  "results": {
+    "clay_rows": 1427915,
+    "clay_screens": 59555,
+    "clay_split_train": 44629,
+    "clay_split_dev": 6207,
+    "clay_split_test": 8719,
+    "clay_splits_disjoint": true,
+    "clay_label_ids": 25,
+    "clay_screens_not_in_any_split": 0,
+    "rico_tar_bytes": 6471262799,
+    "rico_tar_md5_b64": "vc+Z1Nx/NqM5blfjBsdWlg==",
+    "rico_json": 66261,
+    "rico_jpg": 66261,
+    "rico_json_without_jpg": 0,
+    "rico_jpg_without_json": 0,
+    "clay_screens_missing_json": 0,
+    "clay_screens_missing_jpg": 0,
+    "rico_extracted_bytes": 24151276929,
+    "screenshot_sizes_sample200": {
+      "1080x1920": 183,
+      "540x960": 17
+    }
+  },
+  "expected": {
+    "clay_rows": 1427915,
+    "clay_screens": 59555,
+    "clay_split_train": 44629,
+    "clay_split_dev": 6207,
+    "clay_split_test": 8719,
+    "clay_label_ids": 25,
+    "rico_json": 66261,
+    "rico_tar_bytes": 6471262799,
+    "rico_tar_md5_b64": "vc+Z1Nx/NqM5blfjBsdWlg=="
+  },
+  "mismatches": {}
+}
